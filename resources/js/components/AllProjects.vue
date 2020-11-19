@@ -1,6 +1,10 @@
 <template>
     <div>
-        <h3 class="text-center">Проекты</h3><br/>
+        <h3 class="text-center">Проекты</h3>
+        
+        {{ projects.length }}
+
+        Активные проекты: {{ projectsActive.length }}
 
         <table class="table table-bordered">
             <thead>
@@ -20,7 +24,9 @@
                 <td>{{ project.budget }}</td>
                 <td>
                     <div class="btn-group" role="group">
-                        <router-link :to="{name: 'edit', params: { id: project.id }}" class="btn btn-primary">Edit
+                        <router-link :to="{name: 'view', params: { id: project.id }}" class="btn btn-primary">View
+                        </router-link>
+                        <router-link :to="{name: 'edit', params: { id: project.id }}" class="btn btn-warning">Edit
                         </router-link>
                         <button class="btn btn-danger" @click="deleteProject(project.id)">Delete</button>
                     </div>
@@ -28,6 +34,7 @@
             </tr>
             </tbody>
         </table>
+        {{ total }}
     </div>
 </template>
 
@@ -36,6 +43,14 @@
         data() {
             return {
                 projects: [],
+            }
+        },
+        computed: {
+            projectsActive() {
+                return this.projects.filter(project => project.status=='active');
+            },
+            total() {
+                return this.projects.filter(project => project.status=='active').reduce((sum, n) => sum + parseFloat(n.budget), 0)
             }
         },
         created() {

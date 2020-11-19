@@ -14,5 +14,6 @@ Route::group(['prefix' => 'project'], function () {
     Route::post('add', 'App\Http\Controllers\ProjectController@add');
     Route::get('edit/{id}', 'App\Http\Controllers\ProjectController@edit');
     Route::post('update/{id}', 'App\Http\Controllers\ProjectController@update');
+    Route::get('view/{id}', 'App\Http\Controllers\ProjectController@view');
     Route::delete('delete/{id}', 'App\Http\Controllers\ProjectController@delete');
 });

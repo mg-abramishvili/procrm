@@ -44,6 +44,12 @@ class ProjectController extends Controller
         return response()->json('The project successfully updated');
     }
 
+    public function view($id)
+    {
+        $project = Project::find($id);
+        return response()->json($project);
+    }
+
     public function delete($id)
     {
         $project = Project::find($id);

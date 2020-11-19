@@ -17,7 +17,7 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('client');
-            $table->string('budget');
+            $table->decimal('budget');
             $table->string('status');
             $table->timestamps();
         });
