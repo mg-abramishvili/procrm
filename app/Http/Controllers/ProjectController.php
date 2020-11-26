@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Finance;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -46,7 +47,7 @@ class ProjectController extends Controller
 
     public function view($id)
     {
-        $project = Project::find($id);
+        $project = Project::with('finances')->find($id);
         return response()->json($project);
     }
 

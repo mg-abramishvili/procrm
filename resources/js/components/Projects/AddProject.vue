@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h3 class="text-center">Правка</h3>
+        <h3 class="text-center">Добавление проекта</h3>
         <div class="row">
             <div class="col-md-6">
-                <form @submit.prevent="updateProject">
+                <form @submit.prevent="addProject">
                     <div class="form-group">
                         <label>Название</label>
                         <input type="text" class="form-control" v-model="project.title">
@@ -20,7 +20,7 @@
                         <label>Статус</label>
                         <input type="text" class="form-control" v-model="project.status">
                     </div>
-                    <button type="submit" class="btn btn-primary">Изменить</button>
+                    <button type="submit" class="btn btn-primary">Добавить</button>
                 </form>
             </div>
         </div>
@@ -34,21 +34,16 @@
                 project: {}
             }
         },
-        created() {
-            this.axios
-                .get(`/api/project/edit/${this.$route.params.id}`)
-                .then((response) => {
-                    this.project = response.data;
-                    // console.log(response.data);
-                });
-        },
         methods: {
-            updateProject() {
+            addProject() {
                 this.axios
-                    .post(`/api/project/update/${this.$route.params.id}`, this.project)
-                    .then((response) => {
-                        this.$router.push({name: 'home'});
-                    });
+                    .post('/api/project/add', this.project)
+                    .then(response => (
+                        this.$router.push({name: 'projects'})
+                        // console.log(response.data)
+                    ))
+                    .catch(error => console.log(error))
+                    .finally(() => this.loading = false)
             }
         }
     }

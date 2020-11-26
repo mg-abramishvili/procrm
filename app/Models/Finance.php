@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Finance extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title', 'budget', 'client', 'status'
+        'title', 'amount', 'date'
     ];
 
-    public function finances()
+    public function projects()
     {
-        return $this->belongsToMany('App\Models\Finance');
+        return $this->belongsToMany('App\Models\Project');
     }
 }
