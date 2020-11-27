@@ -1927,6 +1927,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -2084,6 +2100,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2150,14 +2172,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     deleteFinance: function deleteFinance(id) {
       var _this2 = this;
 
-      this.axios["delete"]("/api/finance/delete/".concat(id)).then(function (response) {
-        var i = _this2.finances.map(function (item) {
-          return item.id;
-        }).indexOf(id); // find index of your object
+      if (confirm("Удалить поступление?")) {
+        this.axios["delete"]("/api/finance/delete/".concat(id)).then(function (response) {
+          var i = _this2.finances.map(function (item) {
+            return item.id;
+          }).indexOf(id); // find index of your object
 
 
-        _this2.finances.splice(i, 1);
-      });
+          _this2.finances.splice(i, 1);
+        });
+      }
     }
   }
 });
@@ -3140,26 +3164,33 @@ var render = function() {
       "div",
       {
         staticClass:
-          "w-1/2 md:w-1/3 lg:w-64 fixed md:top-0 md:left-0 h-screen lg:block bg-gray-100 border-r z-30 hidden"
+          "w-1/2 md:w-1/3 lg:w-56 fixed md:top-0 md:left-0 h-screen lg:block bg-gray-100 border-r z-30 hidden"
       },
       [
         _vm._m(0),
         _vm._v(" "),
         _c(
           "nav",
-          { staticClass: "mb-4 px-4" },
+          { staticClass: "mb-4 px-6" },
           [
             _c(
               "router-link",
               {
                 staticClass:
-                  "w-full flex items-center text-blue-400 h-10 pl-4 hover:bg-gray-200 rounded-lg cursor-pointer",
+                  "w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2",
                 attrs: { to: "/projects" }
               },
               [
-                _c("span", { staticClass: "text-gray-700" }, [
-                  _vm._v("Проекты")
-                ])
+                _c("img", {
+                  staticClass: "w-6 opacity-60 mr-2",
+                  attrs: { src: "/img/stack.svg" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "flex-1 font-semibold text-gray-600" },
+                  [_vm._v("Проекты")]
+                )
               ]
             ),
             _vm._v(" "),
@@ -3167,13 +3198,62 @@ var render = function() {
               "router-link",
               {
                 staticClass:
-                  "w-full flex items-center text-blue-400 h-10 pl-4 hover:bg-gray-200 rounded-lg cursor-pointer",
+                  "w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2",
                 attrs: { to: "/finances" }
               },
               [
-                _c("span", { staticClass: "text-gray-700" }, [
-                  _vm._v("Финансы")
-                ])
+                _c("img", {
+                  staticClass: "w-6 opacity-60 mr-2",
+                  attrs: { src: "/img/currency-dollar.svg" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "flex-1 font-semibold text-gray-600" },
+                  [_vm._v("Задачи")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass:
+                  "w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2",
+                attrs: { to: "/finances" }
+              },
+              [
+                _c("img", {
+                  staticClass: "w-6 opacity-60 mr-2",
+                  attrs: { src: "/img/currency-dollar.svg" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "flex-1 font-semibold text-gray-600" },
+                  [_vm._v("Финансы")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass:
+                  "w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2",
+                attrs: { to: "/finances" }
+              },
+              [
+                _c("img", {
+                  staticClass: "w-6 opacity-60 mr-2",
+                  attrs: { src: "/img/currency-dollar.svg" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "flex-1 font-semibold text-gray-600" },
+                  [_vm._v("Документы")]
+                )
               ]
             )
           ],
@@ -3184,15 +3264,8 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "w-full bg-gray-100 pl-0 lg:pl-64 min-h-screen" },
-      [
-        _c(
-          "div",
-          { staticClass: "p-6 bg-gray-100 mb-20" },
-          [_c("router-view")],
-          1
-        )
-      ]
+      { staticClass: "w-full bg-white pl-0 lg:pl-56 min-h-screen shadow-lg" },
+      [_c("div", { staticClass: "bg-white mb-20" }, [_c("router-view")], 1)]
     )
   ])
 }
@@ -3203,10 +3276,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "w-full h-20 border-b flex px-4 items-center mb-8" },
+      { staticClass: "w-full h-20 border-b flex px-6 items-center mb-8" },
       [
-        _c("p", { staticClass: "font-semibold text-3xl text-blue-400 pl-4" }, [
-          _vm._v("LOGO")
+        _c("p", { staticClass: "font-semibold text-2xl text-blue-400" }, [
+          _vm._v("Mishiko CRM")
         ])
       ]
     )
@@ -3446,8 +3519,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "finances pt-5" },
     [
-      _c("div", { staticClass: "flex flex-wrap items-center mb-6" }, [
+      _c("div", { staticClass: "flex flex-wrap items-center mb-6 px-8" }, [
         _vm._m(0),
         _vm._v(" "),
         _c(
@@ -3458,7 +3532,7 @@ var render = function() {
               "router-link",
               {
                 staticClass:
-                  "bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow",
+                  "bg-blue-500 hover:bg-blue-600 focus:outline-none rounded px-6 py-2 text-white text-sm font-semibold shadow",
                 attrs: { to: "/finances/add" }
               },
               [_vm._v("Добавить поступление")]
@@ -3472,7 +3546,7 @@ var render = function() {
         "div",
         {
           staticClass:
-            "flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4"
+            "flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-12 px-8"
         },
         [
           _c("div", { staticClass: "w-full lg:w-1/2" }, [
@@ -3480,7 +3554,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "widget w-full p-4 rounded-lg bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890"
+                  "widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890"
               },
               [
                 _c(
@@ -3511,7 +3585,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "widget w-full p-4 rounded-lg bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890"
+                  "widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890"
               },
               [
                 _c(
@@ -3543,140 +3617,145 @@ var render = function() {
         return _c("div", { key: month, staticClass: "mb-4" }, [
           _c(
             "h3",
-            { staticClass: "text-md font-semibold text-gray-400 mb-4" },
+            { staticClass: "text-md font-semibold text-blue-500 mb-4 px-8" },
             [_vm._v(_vm._s(month.date))]
           ),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "overflow-hidden border border-gray-200 sm:rounded-lg mb-4"
-            },
-            [
+          _c("div", { staticClass: "overflow-hidden mb-16" }, [
+            _c("table", { staticClass: "min-w-full border-t" }, [
               _c(
-                "table",
-                { staticClass: "min-w-full divide-y divide-gray-200" },
-                [
-                  _c(
-                    "tbody",
-                    { staticClass: "bg-white divide-y divide-gray-200" },
-                    _vm._l(month.finances, function(finance, i) {
-                      return _c("tr", { key: i }, [
-                        _c(
-                          "td",
-                          { staticClass: "px-6 py-4 whitespace-nowrap w-1/2" },
-                          [
-                            _c("div", { staticClass: "flex items-center" }, [
-                              _c("div", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "text-sm font-medium text-gray-900"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                      " +
-                                        _vm._s(finance.title) +
-                                        "\n                        "
-                                    ),
-                                    _c(
-                                      "div",
-                                      _vm._l(finance.projects, function(
-                                        project
-                                      ) {
-                                        return _c(
-                                          "span",
-                                          {
-                                            key: project.id,
-                                            staticClass: "text-gray-400 text-xs"
-                                          },
-                                          [_vm._v(_vm._s(project.title))]
-                                        )
-                                      }),
-                                      0
-                                    )
-                                  ]
-                                )
-                              ])
+                "tbody",
+                { staticClass: "bg-white" },
+                _vm._l(month.finances, function(finance, i) {
+                  return _c(
+                    "tr",
+                    { key: i, staticClass: "border-b hover:bg-gray-100" },
+                    [
+                      _c(
+                        "td",
+                        { staticClass: "px-8 py-4 whitespace-nowrap w-1/2" },
+                        [
+                          _c("div", { staticClass: "flex items-center" }, [
+                            _c("div", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "text-sm font-medium text-gray-900"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                      " +
+                                      _vm._s(finance.title) +
+                                      "\n                        "
+                                  ),
+                                  _c(
+                                    "div",
+                                    _vm._l(finance.projects, function(project) {
+                                      return _c(
+                                        "span",
+                                        {
+                                          key: project.id,
+                                          staticClass: "text-gray-400 text-xs"
+                                        },
+                                        [_vm._v(_vm._s(project.title))]
+                                      )
+                                    }),
+                                    0
+                                  )
+                                ]
+                              )
                             ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          { staticClass: "px-6 py-4 whitespace-nowrap" },
-                          [
-                            _c(
-                              "div",
-                              { staticClass: "text-sm text-gray-900" },
-                              [_vm._v(_vm._s(finance.date))]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          {
-                            staticClass:
-                              "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                          },
-                          [
-                            _vm._v(
-                              "\n                " +
-                                _vm._s(_vm._f("amount")(finance.amount)) +
-                                " ₽\n              "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          {
-                            staticClass:
-                              "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-                          },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass:
-                                  "text-indigo-600 hover:text-indigo-900",
-                                attrs: {
-                                  to: {
-                                    name: "finance-edit",
-                                    params: { id: finance.id }
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticClass: "px-6 py-4 whitespace-nowrap w-1/5" },
+                        [
+                          _c("div", { staticClass: "text-sm text-gray-900" }, [
+                            _vm._v(_vm._s(finance.date))
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticClass:
+                            "px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-800 w-1/5"
+                        },
+                        [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(_vm._f("amount")(finance.amount)) +
+                              " ₽\n              "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticClass:
+                            "px-6 py-4 whitespace-nowrap text-right text-sm font-medium w-1/4"
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "inline-flex action-buttons" },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass:
+                                    "flex-1 w-5 text-indigo-600 hover:text-indigo-900",
+                                  attrs: {
+                                    to: {
+                                      name: "finance-edit",
+                                      params: { id: finance.id }
+                                    }
                                   }
-                                }
-                              },
-                              [_vm._v("Правка\n                        ")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "text-indigo-600 hover:text-indigo-900",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.deleteFinance(finance.id)
+                                },
+                                [
+                                  _c("img", {
+                                    staticClass: "opacity-30",
+                                    attrs: { src: "/img/edit.svg" }
+                                  })
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "flex-1 w-5 ml-1 text-indigo-600 hover:text-indigo-900",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.deleteFinance(finance.id)
+                                    }
                                   }
-                                }
-                              },
-                              [_vm._v("Удалить")]
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    }),
-                    0
+                                },
+                                [
+                                  _c("img", {
+                                    staticClass: "opacity-30",
+                                    attrs: { src: "/img/trash.svg" }
+                                  })
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      )
+                    ]
                   )
-                ]
+                }),
+                0
               )
-            ]
-          )
+            ])
+          ])
         ])
       })
     ],
