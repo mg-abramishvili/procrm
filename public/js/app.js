@@ -2104,6 +2104,29 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2111,9 +2134,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
   },
   computed: {
-    currentDate: function currentDate() {
-      return this.$moment().format('DD.MM.YYYY');
+    // Current month
+    currentMonth: function currentMonth() {
+      return this.$moment().lang("ru").format('MMMM');
     },
+    // Current year
+    currentYear: function currentYear() {
+      return this.$moment().lang("ru").format('YYYY');
+    },
+    // Total sum of current month
     totalMonth: function totalMonth() {
       var _this = this;
 
@@ -2123,6 +2152,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return sum + parseFloat(n.amount);
       }, 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     },
+    // Total sum of current year
     totalYear: function totalYear() {
       var _this2 = this;
 
@@ -2132,6 +2162,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return sum + parseFloat(n.amount);
       }, 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     },
+    // Group by months
     months: function months() {
       var map = {};
 
@@ -2160,6 +2191,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   filters: {
+    // date filter
     moment: function (_moment) {
       function moment(_x) {
         return _moment.apply(this, arguments);
@@ -2173,9 +2205,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }(function (date) {
       return moment(date).lang("ru").format('LL');
     }),
+    // just month filter
     momentMonth: function momentMonth(date) {
       return moment(date).lang("ru").format('YYYY MMMM');
     },
+    // thousand separator with spaces
     amount: function amount(value) {
       if (!value) return '';
       value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -2190,6 +2224,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     });
   },
   methods: {
+    // delete finance record
     deleteFinance: function deleteFinance(id) {
       var _this4 = this;
 
@@ -25160,10 +25195,21 @@ var render = function() {
                           staticClass:
                             "text-xs uppercase font-light text-grey-500"
                         },
-                        [_vm._v("Месяц")]
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(_vm.currentMonth) +
+                              "\n                        "
+                          )
+                        ]
                       ),
+                      _vm._v(" "),
                       _c("div", { staticClass: "text-xl font-bold" }, [
-                        _vm._v(_vm._s(_vm.totalMonth) + " ₽")
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.totalMonth) +
+                            " ₽\n                        "
+                        )
                       ])
                     ])
                   ]
@@ -25191,10 +25237,21 @@ var render = function() {
                           staticClass:
                             "text-xs uppercase font-light text-grey-500"
                         },
-                        [_vm._v("Год")]
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(_vm.currentYear) +
+                              " год\n                        "
+                          )
+                        ]
                       ),
+                      _vm._v(" "),
                       _c("div", { staticClass: "text-xl font-bold" }, [
-                        _vm._v(_vm._s(_vm.totalYear) + " ₽")
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.totalYear) +
+                            " ₽\n                        "
+                        )
                       ])
                     ])
                   ]
@@ -25245,9 +25302,9 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                      " +
+                                      "\n                                    " +
                                         _vm._s(finance.title) +
-                                        " →\n                      "
+                                        " →\n                                    "
                                     ),
                                     _vm._l(finance.projects, function(project) {
                                       return _c("span", { key: project.id }, [
@@ -25264,7 +25321,10 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "td",
-                          { staticClass: "px-6 py-4 whitespace-nowrap w-1/5" },
+                          {
+                            staticClass:
+                              "px-6 py-4 whitespace-nowrap text-right w-1/5"
+                          },
                           [
                             _c(
                               "div",
@@ -25278,7 +25338,7 @@ var render = function() {
                           "td",
                           {
                             staticClass:
-                              "px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-800 w-1/5"
+                              "px-6 py-4 whitespace-nowrap text-sm font-bold text-right text-gray-800 w-1/5"
                           },
                           [
                             _c(
