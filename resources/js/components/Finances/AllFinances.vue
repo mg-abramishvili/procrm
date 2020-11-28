@@ -1,6 +1,5 @@
 <template>
     <div class="finances pt-5">
-
       <div class="flex flex-wrap items-center mb-6 px-8">
         <div class="flex w-1/2">
           <div class="block">
@@ -18,30 +17,28 @@
   <div class="w-full lg:w-1/2"><div class="widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890"><div class="flex flex-row items-center justify-between"><div class="flex flex-col"><div class="text-xs uppercase font-light text-grey-500">Год</div><div class="text-xl font-bold">{{ totalYear }} ₽</div></div></div></div></div>
 </div>
 
-
-<div class="mb-4" v-for="month in months" :key="month">
-<h3 class="text-md font-semibold text-blue-500 mb-4 px-8">{{ month.date }}</h3>
-      <div class="overflow-hidden mb-16">
-        <table class="min-w-full border-t">
+<div class="border-t border-blue-100"></div>
+<div v-for="month in months">
+<h3 class="px-8 py-3 bg-blue-50 w-full text-sm font-medium text-gray-500 uppercase">{{ month.date | momentMonth }}</h3>
+      <div class="overflow-hidden">
+        <table class="min-w-full border-t border-blue-100">
           <tbody class="bg-white">
-            <tr v-for="(finance, i) in month.finances" :key="i" class="border-b hover:bg-gray-100">
+            <tr v-for="(finance, i) in month.finances" :key="i" class="border-b border-blue-100">
               <td class="px-8 py-4 whitespace-nowrap w-1/2">
                 <div class="flex items-center">
                   <div>
                     <div class="text-sm font-medium text-gray-900">
-                      {{ finance.title }}
-                        <div>
-                          <span v-for="project in finance.projects" :key="project.id" class="text-gray-400 text-xs">{{ project.title }}</span>
-                        </div>
+                      {{ finance.title }} →
+                      <span v-for="project in finance.projects" :key="project.id">{{ project.title }}</span>
                     </div>
                   </div>
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap w-1/5">
-                <div class="text-sm text-gray-900">{{ finance.date }}</div>
+                <div class="text-sm text-gray-900">{{ finance.date | moment }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-800 w-1/5">
-                {{ finance.amount | amount }} ₽
+                <span class="px-4 py-2 inline-flex text-sm leading-3 font-bold rounded-full bg-green-100 text-gray-700">{{ finance.amount | amount }} ₽</span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium w-1/4">
                   <div class="inline-flex action-buttons">
@@ -60,7 +57,8 @@
         </table>
       </div>
 </div></div>
-        
+
+
 </template>
 
 <script>
@@ -72,11 +70,15 @@
         },
         computed: {
 
+            currentDate() {
+              return this.$moment().format('DD.MM.YYYY');
+            },
+
             totalMonth() {
-                return this.finances.filter(finance => finance.date.slice(0, 7)=='2020-10').reduce((sum, n) => sum + parseFloat(n.amount), 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+                return this.finances.filter(finance => finance.date.slice(0, 7)==this.$moment().format('YYYY-MM')).reduce((sum, n) => sum + parseFloat(n.amount), 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
             },
             totalYear() {
-                return this.finances.filter(finance => finance.date.slice(0, 4)=='2020').reduce((sum, n) => sum + parseFloat(n.amount), 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+                return this.finances.filter(finance => finance.date.slice(0, 4)==this.$moment().format('YYYY')).reduce((sum, n) => sum + parseFloat(n.amount), 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
             },
 
             months () {
@@ -89,10 +91,16 @@
             map[month].finances.push(finance)
             }
 
-            return Object.keys(map).sort().map(month => map[month])
+            return Object.keys(map).sort().reverse().map(month => map[month])
             },
         },
         filters: {
+          moment: function (date) {
+            return moment(date).lang("ru").format('LL');
+          },
+          momentMonth: function (date) {
+            return moment(date).lang("ru").format('YYYY MMMM');
+          },
           amount: function (value) {
           if (!value) return ''
           value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -116,7 +124,7 @@
                         this.finances.splice(i, 1)
                     });
                 }
-            }
+            },
         }
     }
 </script>
