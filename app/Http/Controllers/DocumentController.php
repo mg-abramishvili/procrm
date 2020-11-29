@@ -21,10 +21,14 @@ class DocumentController extends Controller
 
     public function add(Request $request)
     {
+        $fileName = time().'.'.$request->file->getClientOriginalExtension();
+        $request->file->move(public_path() . '/uploads', $fileName);
+
         $document = new Document([
             'title' => $request->get('title'),
-            'file' => $request->get('file'),
+            'file' => $fileName,
         ]);
+
         $document->save();
         $document->projects()->attach($request->projects, ['document_id' => $document->id]);
         return response()->json('The document successfully added');

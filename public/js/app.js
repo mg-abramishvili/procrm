@@ -2003,10 +2003,18 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    onFileChange: function onFileChange(e) {
+      // console.log(e.target.files[0]);
+      this.file = e.target.files[0];
+    },
     addDocument: function addDocument() {
       var _this2 = this;
 
-      this.axios.post('/api/document/add', this.document).then(function (response) {
+      var formData = new FormData();
+      formData.append('title', this.document.title);
+      formData.append('file', this.file);
+      formData.append('projects', this.document.projects);
+      this.axios.post('/api/document/add', formData).then(function (response) {
         return _this2.$router.push({
           name: 'documents'
         }) // console.log(response.data)
@@ -25286,26 +25294,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.document.file,
-                        expression: "document.file"
-                      }
-                    ],
                     staticClass:
                       "block w-full text-md rounded-md p-1 border border-gray-300",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.document.file },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.document, "file", $event.target.value)
-                      }
-                    }
+                    attrs: { type: "file" },
+                    on: { change: _vm.onFileChange }
                   })
                 ])
               ]

@@ -12,7 +12,7 @@
                         </div>
                         <div class="w-full lg:w-1/3">
                             <label class="block text-sm font-medium text-gray-700">Файл</label>
-                            <input type="text" class="block w-full text-md rounded-md p-1 border border-gray-300" v-model="document.file">
+                            <input type="file" v-on:change="onFileChange" class="block w-full text-md rounded-md p-1 border border-gray-300">
                         </div>
                     </div>
                     <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
@@ -46,9 +46,19 @@
                 });
         },
         methods: {
+            onFileChange(e){
+                // console.log(e.target.files[0]);
+                this.file = e.target.files[0];
+            },
             addDocument() {
+
+                let formData = new FormData();
+                formData.append('title', this.document.title);
+                formData.append('file', this.file);
+                formData.append('projects', this.document.projects);
+
                 this.axios
-                    .post('/api/document/add', this.document)
+                    .post('/api/document/add', formData)
                     .then(response => (
                         this.$router.push({name: 'documents'})
                         // console.log(response.data)

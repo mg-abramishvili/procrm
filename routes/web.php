@@ -11,5 +11,3 @@ Auth::routes([
 Route::get('{any}', function () {
     return view('app');
 })->where('any', '.*')->middleware('auth');
-
-Route::post('documents/file/{method}','App\Http\Controllers\DocumentController@file');
