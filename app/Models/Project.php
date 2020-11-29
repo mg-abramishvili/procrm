@@ -17,4 +17,9 @@ class Project extends Model
     {
         return $this->belongsToMany('App\Models\Finance');
     }
+
+    public function documents()
+    {
+        return $this->belongsToMany('App\Models\Document');
+    }
 }

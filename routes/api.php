@@ -27,3 +27,12 @@ Route::group(['prefix' => 'finance'], function () {
     Route::get('view/{id}', 'App\Http\Controllers\FinanceController@view');
     Route::delete('delete/{id}', 'App\Http\Controllers\FinanceController@delete');
 });
+
+Route::get('documents', 'App\Http\Controllers\DocumentController@index');
+Route::group(['prefix' => 'document'], function () {
+    Route::post('add', 'App\Http\Controllers\DocumentController@add');
+    Route::get('edit/{id}', 'App\Http\Controllers\DocumentController@edit');
+    Route::post('update/{id}', 'App\Http\Controllers\DocumentController@update');
+    Route::get('view/{id}', 'App\Http\Controllers\DocumentController@view');
+    Route::delete('delete/{id}', 'App\Http\Controllers\DocumentController@delete');
+});
