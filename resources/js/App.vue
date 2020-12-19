@@ -23,7 +23,7 @@
                     <span class="flex-1 font-semibold text-gray-600">Документы</span>
                 </router-link>
 
-                <router-link to="/documents" class="w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
+                <router-link to="/leads" class="w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
                     <img src="/img/pennant.svg" class="w-6 opacity-60 mr-2" />
                     <span class="flex-1 font-semibold text-gray-600">Заявки</span>
                 </router-link>

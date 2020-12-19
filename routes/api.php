@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\LeadController;
 use App\Http\Controllers\DocumentController;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -36,6 +37,14 @@ Route::group(['prefix' => 'task'], function () {
     Route::get('edit/{id}', 'App\Http\Controllers\TaskController@edit');
     Route::post('update/{id}', 'App\Http\Controllers\TaskController@update');
     Route::delete('delete/{id}', 'App\Http\Controllers\TaskController@delete');
+});
+
+Route::get('leads', 'App\Http\Controllers\LeadController@index');
+Route::group(['prefix' => 'lead'], function () {
+    Route::post('add', 'App\Http\Controllers\LeadController@add');
+    Route::get('edit/{id}', 'App\Http\Controllers\LeadController@edit');
+    Route::post('update/{id}', 'App\Http\Controllers\LeadController@update');
+    Route::delete('delete/{id}', 'App\Http\Controllers\LeadController@delete');
 });
 
 Route::get('documents', 'App\Http\Controllers\DocumentController@index');

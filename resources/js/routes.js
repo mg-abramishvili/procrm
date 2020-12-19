@@ -12,6 +12,10 @@ import AllTasks from './components/Tasks/AllTasks.vue';
 import AddTask from './components/Tasks/AddTask.vue';
 import EditTask from './components/Tasks/EditTask.vue';
 
+import AllLeads from './components/Leads/AllLeads.vue';
+import AddLead from './components/Leads/AddLead.vue';
+import EditLead from './components/Leads/EditLead.vue';
+
 import AllDocuments from './components/Documents/AllDocuments.vue';
 import AddDocument from './components/Documents/AddDocument.vue';
 import EditDocument from './components/Documents/EditDocument.vue';
@@ -72,6 +76,21 @@ export const routes = [
         name: 'task-edit',
         path: '/tasks/edit/:id',
         component: EditTask
+    },
+    {
+        name: 'leads',
+        path: '/leads',
+        component: AllLeads
+    },
+    {
+        name: 'lead-add',
+        path: '/leads/add',
+        component: AddLead
+    },
+    {
+        name: 'lead-edit',
+        path: '/leads/edit/:id',
+        component: EditLead
     },
     {
         name: 'documents',
