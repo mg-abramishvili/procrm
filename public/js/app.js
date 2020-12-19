@@ -27491,7 +27491,7 @@ var render = function() {
           "div",
           {
             key: lead.id,
-            staticClass: "px-4 py-3 bg-white border border-grey-100"
+            staticClass: "px-4 py-3 mb-4 bg-white border border-grey-100"
           },
           [
             _c("h5", { staticClass: "font-semibold" }, [
