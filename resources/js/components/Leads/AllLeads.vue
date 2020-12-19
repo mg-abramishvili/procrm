@@ -12,7 +12,7 @@
         </div>
 
         <div class="px-8">
-            <div v-for="lead in leads" :key="lead.id" class="px-4 py-3 bg-white border border-grey-100">
+            <div v-for="lead in leads" :key="lead.id" class="px-4 py-3 mb-4 bg-white border border-grey-100">
                 <h5 class="font-semibold">{{ lead.title }}</h5>
                 <p>{{ lead.text }}</p>
                 <button class="flex-1 w-5 ml-1 text-indigo-600 hover:text-indigo-900" @click="deleteLead(lead.id)">
