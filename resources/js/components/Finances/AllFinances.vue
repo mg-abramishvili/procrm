@@ -139,7 +139,7 @@
           // thousand separator with spaces
           amount: function (value) {
             if (!value) return ''
-            value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ").slice(0, 3);
+            value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ").slice(0, -3);
             return value
           },
 

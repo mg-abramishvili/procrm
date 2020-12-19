@@ -2516,7 +2516,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     // thousand separator with spaces
     amount: function amount(value) {
       if (!value) return '';
-      value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ").slice(0, 3);
+      value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ").slice(0, -3);
       return value;
     }
   },
