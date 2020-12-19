@@ -18,6 +18,11 @@ class Project extends Model
         return $this->belongsToMany('App\Models\Finance');
     }
 
+    public function tasks()
+    {
+        return $this->belongsToMany('App\Models\Task');
+    }
+
     public function documents()
     {
         return $this->belongsToMany('App\Models\Document');

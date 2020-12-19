@@ -8,6 +8,10 @@ import AddFinance from './components/Finances/AddFinance.vue';
 import EditFinance from './components/Finances/EditFinance.vue';
 import ViewFinance from './components/Finances/ViewFinance.vue';
 
+import AllTasks from './components/Tasks/AllTasks.vue';
+import AddTask from './components/Tasks/AddTask.vue';
+import EditTask from './components/Tasks/EditTask.vue';
+
 import AllDocuments from './components/Documents/AllDocuments.vue';
 import AddDocument from './components/Documents/AddDocument.vue';
 import EditDocument from './components/Documents/EditDocument.vue';
@@ -53,6 +57,21 @@ export const routes = [
         name: 'finance-view',
         path: '/finances/view/:id',
         component: ViewFinance
+    },
+    {
+        name: 'tasks',
+        path: '/tasks',
+        component: AllTasks
+    },
+    {
+        name: 'task-add',
+        path: '/tasks/add',
+        component: AddTask
+    },
+    {
+        name: 'task-edit',
+        path: '/tasks/edit/:id',
+        component: EditTask
     },
     {
         name: 'documents',
