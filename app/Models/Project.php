@@ -10,7 +10,7 @@ class Project extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'budget', 'client', 'status'
+        'title', 'budget', 'client', 'status', 'start_date', 'comment'
     ];
 
     public function finances()

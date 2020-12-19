@@ -19,8 +19,8 @@ class CreateProjectsTable extends Migration
             $table->string('client');
             $table->decimal('budget');
             $table->string('status');
-            $table->string('start_date');
-            $table->longText('comment');
+            $table->string('start_date')->nullable();
+            $table->longText('comment')->nullable();
             $table->timestamps();
         });
     }
