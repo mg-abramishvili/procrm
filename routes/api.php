@@ -13,7 +13,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('projects', 'App\Http\Controllers\ProjectController@index')->middleware('auth');
+Route::get('projects', 'App\Http\Controllers\ProjectController@index');
 Route::group(['prefix' => 'project'], function () {
     Route::post('add', 'App\Http\Controllers\ProjectController@add');
     Route::get('edit/{id}', 'App\Http\Controllers\ProjectController@edit');
@@ -22,7 +22,7 @@ Route::group(['prefix' => 'project'], function () {
     Route::delete('delete/{id}', 'App\Http\Controllers\ProjectController@delete');
 });
 
-Route::get('finances', 'App\Http\Controllers\FinanceController@index')->middleware('auth');
+Route::get('finances', 'App\Http\Controllers\FinanceController@index');
 Route::group(['prefix' => 'finance'], function () {
     Route::post('add', 'App\Http\Controllers\FinanceController@add');
     Route::get('edit/{id}', 'App\Http\Controllers\FinanceController@edit');
@@ -31,7 +31,7 @@ Route::group(['prefix' => 'finance'], function () {
     Route::delete('delete/{id}', 'App\Http\Controllers\FinanceController@delete');
 });
 
-Route::get('tasks', 'App\Http\Controllers\TaskController@index')->middleware('auth');
+Route::get('tasks', 'App\Http\Controllers\TaskController@index');
 Route::group(['prefix' => 'task'], function () {
     Route::post('add', 'App\Http\Controllers\TaskController@add');
     Route::get('edit/{id}', 'App\Http\Controllers\TaskController@edit');
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'task'], function () {
     Route::delete('delete/{id}', 'App\Http\Controllers\TaskController@delete');
 });
 
-Route::get('leads', 'App\Http\Controllers\LeadController@index')->middleware('auth');
+Route::get('leads', 'App\Http\Controllers\LeadController@index');
 Route::group(['prefix' => 'lead'], function () {
     Route::post('add', 'App\Http\Controllers\LeadController@add');
     Route::get('edit/{id}', 'App\Http\Controllers\LeadController@edit');
@@ -47,7 +47,7 @@ Route::group(['prefix' => 'lead'], function () {
     Route::delete('delete/{id}', 'App\Http\Controllers\LeadController@delete');
 });
 
-Route::get('documents', 'App\Http\Controllers\DocumentController@index')->middleware('auth');
+Route::get('documents', 'App\Http\Controllers\DocumentController@index');
 Route::group(['prefix' => 'document'], function () {
     Route::post('add', 'App\Http\Controllers\DocumentController@add');
     Route::get('edit/{id}', 'App\Http\Controllers\DocumentController@edit');
