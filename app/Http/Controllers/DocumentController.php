@@ -16,7 +16,7 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        return Document::with('projects')->orderBy('date', 'desc')->paginate(20);
+        return Document::with('projects')->orderBy('date', 'desc')->paginate(200);
     }
 
     public function add(Request $request)

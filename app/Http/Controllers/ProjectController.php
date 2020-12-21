@@ -16,7 +16,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return Project::latest()->paginate(20);
+        return Project::latest()->paginate(200);
     }
 
     public function add(Request $request)

@@ -16,7 +16,7 @@ class FinanceController extends Controller
      */
     public function index()
     {
-        return Finance::with('projects')->orderBy('date', 'desc')->paginate(20);
+        return Finance::with('projects')->orderBy('date', 'desc')->paginate(200);
     }
 
     public function add(Request $request)
