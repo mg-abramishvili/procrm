@@ -8,9 +8,6 @@ use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
-    public function index() {
-        redirect('/login');
-    }
 
     public function login(Request $request) {
         $request->validate([
