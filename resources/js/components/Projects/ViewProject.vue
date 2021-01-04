@@ -23,7 +23,14 @@
             </div>
             <div class="w-full lg:w-1/3">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Статус</label>
-                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" :value="project.status" disabled>
+                <input v-if="project.status === 'active'" type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" value="в работе" disabled>
+                <input v-else type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" value="завершен" disabled>
+            </div>
+            </div>
+            <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
+            <div class="w-full">
+                <label class="block text-sm font-medium text-gray-700 mb-2">О проекте</label>
+                <textarea class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" v-model="project.comment" disabled></textarea>
             </div>
         </div>
 
@@ -31,12 +38,12 @@
 
         <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
             <div class="w-full lg:w-1/3">
-                <label class="block text-sm font-medium text-gray-700">Бюджет</label>
-                <input type="text" class="block w-full text-md rounded-md p-1 border border-gray-300" :value="project.budget" disabled>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Бюджет</label>
+                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-300" :value="project.budget" disabled>
             </div>
             <div class="w-full lg:w-1/3" v-for="finance in project.finances" :key="finance.id">
                 <label class="block text-sm font-medium text-gray-700">{{ finance.title }} ({{ finance.date }})</label>
-                <input type="text" class="block w-full text-md rounded-md p-1 border border-gray-300" :value="finance.amount" disabled>
+                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-300" :value="finance.amount" disabled>
             </div>
         </div>
     </div>

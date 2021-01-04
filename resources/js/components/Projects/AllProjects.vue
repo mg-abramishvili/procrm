@@ -75,8 +75,11 @@
                 <div class="text-sm text-gray-900">{{ project.client }}</div>
               </td>
               <td class="px-8 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  {{ project.status }}
+                <span v-if="project.status === 'active'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-700">
+                  в работе
+                </span>
+                <span v-else class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  завершен
                 </span>
               </td>
             </tr>

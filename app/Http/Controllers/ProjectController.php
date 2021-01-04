@@ -26,6 +26,7 @@ class ProjectController extends Controller
             'client' => $request->get('client'),
             'budget' => $request->get('budget'),
             'status' => $request->get('status'),
+            'comment' => $request->get('comment'),
             'user_id' => \Auth::user()->id,
         ]);
         $project->save();

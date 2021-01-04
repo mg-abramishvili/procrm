@@ -3026,6 +3026,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3061,6 +3081,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -3246,6 +3269,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3283,6 +3322,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -28010,24 +28056,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", { staticClass: "text-center" }, [_vm._v("Добавление проекта")]),
+  return _c("div", { staticClass: "px-8 mt-5" }, [
+    _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-6" }, [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.addProject($event)
+          }
+        }
+      },
+      [
         _c(
-          "form",
+          "div",
           {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.addProject($event)
-              }
-            }
+            staticClass:
+              "flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4"
           },
           [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Название")]),
+            _c("div", { staticClass: "w-full lg:w-1/3" }, [
+              _c(
+                "label",
+                { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
+                [_vm._v("Название")]
+              ),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -28038,7 +28093,8 @@ var render = function() {
                     expression: "project.title"
                   }
                 ],
-                staticClass: "form-control",
+                staticClass:
+                  "block w-full text-md rounded-md py-2 px-2 border border-gray-200",
                 attrs: { type: "text" },
                 domProps: { value: _vm.project.title },
                 on: {
@@ -28052,8 +28108,12 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Заказчик")]),
+            _c("div", { staticClass: "w-full lg:w-1/3" }, [
+              _c(
+                "label",
+                { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
+                [_vm._v("Заказчик")]
+              ),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -28064,7 +28124,8 @@ var render = function() {
                     expression: "project.client"
                   }
                 ],
-                staticClass: "form-control",
+                staticClass:
+                  "block w-full text-md rounded-md py-2 px-2 border border-gray-200",
                 attrs: { type: "text" },
                 domProps: { value: _vm.project.client },
                 on: {
@@ -28078,8 +28139,116 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Бюджет")]),
+            _c("div", { staticClass: "w-full lg:w-1/3" }, [
+              _c(
+                "label",
+                { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
+                [_vm._v("Статус")]
+              ),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.project.status,
+                      expression: "project.status"
+                    }
+                  ],
+                  staticClass:
+                    "block w-full text-md rounded-md p-1 border border-gray-300",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.project,
+                        "status",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "active" } }, [
+                    _vm._v("в работе")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "archive" } }, [
+                    _vm._v("завершен")
+                  ])
+                ]
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4"
+          },
+          [
+            _c("div", { staticClass: "w-full" }, [
+              _c(
+                "label",
+                { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
+                [_vm._v("О проекте")]
+              ),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.project.comment,
+                    expression: "project.comment"
+                  }
+                ],
+                staticClass:
+                  "block w-full text-md rounded-md py-2 px-2 border border-gray-200",
+                domProps: { value: _vm.project.comment },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.project, "comment", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("h2", { staticClass: "text-xl font-semibold mb-4" }, [
+          _vm._v("Финансы проекта")
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4"
+          },
+          [
+            _c("div", { staticClass: "w-full lg:w-1/3" }, [
+              _c(
+                "label",
+                { staticClass: "block text-sm font-medium text-gray-700" },
+                [_vm._v("Бюджет")]
+              ),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -28090,7 +28259,8 @@ var render = function() {
                     expression: "project.budget"
                   }
                 ],
-                staticClass: "form-control",
+                staticClass:
+                  "block w-full text-md rounded-md p-1 border border-gray-300",
                 attrs: { type: "text" },
                 domProps: { value: _vm.project.budget },
                 on: {
@@ -28102,46 +28272,35 @@ var render = function() {
                   }
                 }
               })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Статус")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.project.status,
-                    expression: "project.status"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.project.status },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.project, "status", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-              [_vm._v("Добавить")]
-            )
+            ])
           ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+          [_vm._v("Добавить")]
         )
-      ])
-    ])
+      ]
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-wrap items-center mb-6" }, [
+      _c("div", { staticClass: "flex w-1/2" }, [
+        _c("div", { staticClass: "block" }, [
+          _c("h1", { staticClass: "text-3xl font-semibold mb-4" }, [
+            _vm._v("Новый проект")
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -28322,20 +28481,23 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("td", { staticClass: "px-8 py-4 whitespace-nowrap" }, [
-                _c(
-                  "span",
-                  {
-                    staticClass:
-                      "px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-                  },
-                  [
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(project.status) +
-                        "\n            "
+                project.status === "active"
+                  ? _c(
+                      "span",
+                      {
+                        staticClass:
+                          "px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-700"
+                      },
+                      [_vm._v("\n              в работе\n            ")]
                     )
-                  ]
-                )
+                  : _c(
+                      "span",
+                      {
+                        staticClass:
+                          "px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                      },
+                      [_vm._v("\n              завершен\n            ")]
+                    )
               ])
             ])
           }),
@@ -28416,17 +28578,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "flex flex-wrap items-center mb-6" }, [
-      _c("div", { staticClass: "flex w-1/2" }, [
-        _c("div", { staticClass: "block" }, [
-          _c("h1", { staticClass: "text-3xl font-semibold mb-4" }, [
-            _vm._v(_vm._s(_vm.project.title))
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
+  return _c("div", { staticClass: "px-8 mt-5" }, [
     _c(
       "form",
       {
@@ -28438,6 +28590,18 @@ var render = function() {
         }
       },
       [
+        _c("div", { staticClass: "flex flex-wrap items-center mb-6" }, [
+          _c("div", { staticClass: "flex w-1/2" }, [
+            _c("div", { staticClass: "block" }, [
+              _c("h1", { staticClass: "text-3xl font-semibold mb-4" }, [
+                _vm._v(_vm._s(_vm.project.title))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ]),
+        _vm._v(" "),
         _c(
           "div",
           {
@@ -28448,7 +28612,7 @@ var render = function() {
             _c("div", { staticClass: "w-full lg:w-1/3" }, [
               _c(
                 "label",
-                { staticClass: "block text-sm font-medium text-gray-700" },
+                { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
                 [_vm._v("Название")]
               ),
               _vm._v(" "),
@@ -28462,7 +28626,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "block w-full text-md rounded-md p-1 border border-gray-300",
+                  "block w-full text-md rounded-md py-2 px-2 border border-gray-300",
                 attrs: { type: "text" },
                 domProps: { value: _vm.project.title },
                 on: {
@@ -28479,7 +28643,7 @@ var render = function() {
             _c("div", { staticClass: "w-full lg:w-1/3" }, [
               _c(
                 "label",
-                { staticClass: "block text-sm font-medium text-gray-700" },
+                { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
                 [_vm._v("Заказчик")]
               ),
               _vm._v(" "),
@@ -28493,7 +28657,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "block w-full text-md rounded-md p-1 border border-gray-300",
+                  "block w-full text-md rounded-md py-2 px-2 border border-gray-300",
                 attrs: { type: "text" },
                 domProps: { value: _vm.project.client },
                 on: {
@@ -28510,29 +28674,137 @@ var render = function() {
             _c("div", { staticClass: "w-full lg:w-1/3" }, [
               _c(
                 "label",
-                { staticClass: "block text-sm font-medium text-gray-700" },
+                { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
                 [_vm._v("Статус")]
               ),
               _vm._v(" "),
-              _c("input", {
+              _vm.project.status === "active"
+                ? _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.project.status,
+                          expression: "project.status"
+                        }
+                      ],
+                      staticClass:
+                        "block w-full text-md rounded-md py-2 px-2 border border-gray-300",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.project,
+                            "status",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "option",
+                        { attrs: { value: "active", selected: "" } },
+                        [_vm._v("в работе")]
+                      ),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "archive" } }, [
+                        _vm._v("завершен")
+                      ])
+                    ]
+                  )
+                : _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.project.status,
+                          expression: "project.status"
+                        }
+                      ],
+                      staticClass:
+                        "block w-full text-md rounded-md py-2 px-2 border border-gray-300",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.project,
+                            "status",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "active" } }, [
+                        _vm._v("в работе")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "option",
+                        { attrs: { value: "archive", selected: "" } },
+                        [_vm._v("завершен")]
+                      )
+                    ]
+                  )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4"
+          },
+          [
+            _c("div", { staticClass: "w-full" }, [
+              _c(
+                "label",
+                { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
+                [_vm._v("О проекте")]
+              ),
+              _vm._v(" "),
+              _c("textarea", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.project.status,
-                    expression: "project.status"
+                    value: _vm.project.comment,
+                    expression: "project.comment"
                   }
                 ],
                 staticClass:
-                  "block w-full text-md rounded-md p-1 border border-gray-300",
-                attrs: { type: "text" },
-                domProps: { value: _vm.project.status },
+                  "block w-full text-md rounded-md py-2 px-2 border border-gray-200",
+                domProps: { value: _vm.project.comment },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.project, "status", $event.target.value)
+                    _vm.$set(_vm.project, "comment", $event.target.value)
                   }
                 }
               })
@@ -28554,7 +28826,7 @@ var render = function() {
             _c("div", { staticClass: "w-full lg:w-1/3" }, [
               _c(
                 "label",
-                { staticClass: "block text-sm font-medium text-gray-700" },
+                { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
                 [_vm._v("Бюджет")]
               ),
               _vm._v(" "),
@@ -28568,7 +28840,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "block w-full text-md rounded-md p-1 border border-gray-300",
+                  "block w-full text-md rounded-md py-2 px-2 border border-gray-300",
                 attrs: { type: "text" },
                 domProps: { value: _vm.project.budget },
                 on: {
@@ -28582,22 +28854,29 @@ var render = function() {
               })
             ])
           ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Сохранить")]
         )
       ]
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex w-1/2 justify-end" }, [
+      _c(
+        "button",
+        {
+          staticClass:
+            "bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("Сохранить")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -28693,11 +28972,56 @@ var render = function() {
             [_vm._v("Статус")]
           ),
           _vm._v(" "),
-          _c("input", {
+          _vm.project.status === "active"
+            ? _c("input", {
+                staticClass:
+                  "block w-full text-md rounded-md py-2 px-2 border border-gray-200",
+                attrs: { type: "text", value: "в работе", disabled: "" }
+              })
+            : _c("input", {
+                staticClass:
+                  "block w-full text-md rounded-md py-2 px-2 border border-gray-200",
+                attrs: { type: "text", value: "завершен", disabled: "" }
+              })
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass:
+          "flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4"
+      },
+      [
+        _c("div", { staticClass: "w-full" }, [
+          _c(
+            "label",
+            { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
+            [_vm._v("О проекте")]
+          ),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.project.comment,
+                expression: "project.comment"
+              }
+            ],
             staticClass:
               "block w-full text-md rounded-md py-2 px-2 border border-gray-200",
-            attrs: { type: "text", disabled: "" },
-            domProps: { value: _vm.project.status }
+            attrs: { disabled: "" },
+            domProps: { value: _vm.project.comment },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.project, "comment", $event.target.value)
+              }
+            }
           })
         ])
       ]
@@ -28717,13 +29041,13 @@ var render = function() {
         _c("div", { staticClass: "w-full lg:w-1/3" }, [
           _c(
             "label",
-            { staticClass: "block text-sm font-medium text-gray-700" },
+            { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
             [_vm._v("Бюджет")]
           ),
           _vm._v(" "),
           _c("input", {
             staticClass:
-              "block w-full text-md rounded-md p-1 border border-gray-300",
+              "block w-full text-md rounded-md py-2 px-2 border border-gray-300",
             attrs: { type: "text", disabled: "" },
             domProps: { value: _vm.project.budget }
           })
@@ -28746,7 +29070,7 @@ var render = function() {
               _vm._v(" "),
               _c("input", {
                 staticClass:
-                  "block w-full text-md rounded-md p-1 border border-gray-300",
+                  "block w-full text-md rounded-md py-2 px-2 border border-gray-300",
                 attrs: { type: "text", disabled: "" },
                 domProps: { value: finance.amount }
               })
