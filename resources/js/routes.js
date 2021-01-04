@@ -1,3 +1,5 @@
+import Login from './components/Login.vue';
+
 import AllProjects from './components/Projects/AllProjects.vue';
 import AddProject from './components/Projects/AddProject.vue';
 import EditProject from './components/Projects/EditProject.vue';
@@ -23,93 +25,224 @@ import ViewDocument from './components/Documents/ViewDocument.vue';
 
 export const routes = [
     {
+        name: 'login',
+        path: '/login',
+        component: Login
+    },
+    {
         name: 'projects',
         path: '/projects',
-        component: AllProjects
+        component: AllProjects,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'project-add',
         path: '/projects/add',
-        component: AddProject
+        component: AddProject,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'project-edit',
         path: '/projects/edit/:id',
-        component: EditProject
+        component: EditProject,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'project-view',
         path: '/projects/view/:id',
-        component: ViewProject
+        component: ViewProject,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'finances',
         path: '/finances',
-        component: AllFinances
+        component: AllFinances,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'finance-add',
         path: '/finances/add',
-        component: AddFinance
+        component: AddFinance,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'finance-edit',
         path: '/finances/edit/:id',
-        component: EditFinance
+        component: EditFinance,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'finance-view',
         path: '/finances/view/:id',
-        component: ViewFinance
+        component: ViewFinance,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'tasks',
         path: '/tasks',
-        component: AllTasks
+        component: AllTasks,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'task-add',
         path: '/tasks/add',
-        component: AddTask
+        component: AddTask,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'task-edit',
         path: '/tasks/edit/:id',
-        component: EditTask
+        component: EditTask,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'leads',
         path: '/leads',
-        component: AllLeads
+        component: AllLeads,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'lead-add',
         path: '/leads/add',
-        component: AddLead
+        component: AddLead,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'lead-edit',
         path: '/leads/edit/:id',
-        component: EditLead
+        component: EditLead,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'documents',
         path: '/documents',
-        component: AllDocuments
+        component: AllDocuments,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'document-add',
         path: '/documents/add',
-        component: AddDocument
+        component: AddDocument,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'document-edit',
         path: '/documents/edit/:id',
-        component: EditDocument
+        component: EditDocument,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     },
     {
         name: 'document-view',
         path: '/documents/view/:id',
-        component: ViewDocument
+        component: ViewDocument,
+        beforeEnter: (to, from, next) =>{
+            axios.get('/api/auth').then(()=>{
+                next()
+            }).catch(()=>{
+                return next({ name: 'login'})
+            })
+        }
     }
 ];

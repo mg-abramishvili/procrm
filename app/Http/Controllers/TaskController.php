@@ -19,7 +19,7 @@ class TaskController extends Controller
     {
         //return Task::with('projects')->orderBy('created_at', 'desc')->paginate(20);
         //return Project::with('tasks')->where('status', 'active')->has('tasks')->orderBy('created_at', 'desc')->paginate(20);
-        return Project::with('tasks')->where('status', 'active')->orderBy('created_at', 'desc')->paginate(20);
+        return Project::with('tasks')->where('status', 'active')->where('user_id', \Auth::user()->id)->orderBy('created_at', 'desc')->paginate(20);
     }
 
     public function add(Request $request)

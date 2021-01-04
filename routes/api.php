@@ -3,17 +3,24 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\DocumentController;
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('projects', 'App\Http\Controllers\ProjectController@index');
+Route::middleware('auth:sanctum')->get('/auth', function () {
+    return true;
+});
+
+Route::post('login', 'App\Http\Controllers\LoginController@login');
+
+Route::get('projects', 'App\Http\Controllers\ProjectController@index')->middleware('auth:sanctum');
 Route::group(['prefix' => 'project'], function () {
     Route::post('add', 'App\Http\Controllers\ProjectController@add');
     Route::get('edit/{id}', 'App\Http\Controllers\ProjectController@edit');
@@ -22,7 +29,7 @@ Route::group(['prefix' => 'project'], function () {
     Route::delete('delete/{id}', 'App\Http\Controllers\ProjectController@delete');
 });
 
-Route::get('finances', 'App\Http\Controllers\FinanceController@index');
+Route::get('finances', 'App\Http\Controllers\FinanceController@index')->middleware('auth:sanctum');
 Route::group(['prefix' => 'finance'], function () {
     Route::post('add', 'App\Http\Controllers\FinanceController@add');
     Route::get('edit/{id}', 'App\Http\Controllers\FinanceController@edit');
@@ -31,7 +38,7 @@ Route::group(['prefix' => 'finance'], function () {
     Route::delete('delete/{id}', 'App\Http\Controllers\FinanceController@delete');
 });
 
-Route::get('tasks', 'App\Http\Controllers\TaskController@index');
+Route::get('tasks', 'App\Http\Controllers\TaskController@index')->middleware('auth:sanctum');
 Route::group(['prefix' => 'task'], function () {
     Route::post('add', 'App\Http\Controllers\TaskController@add');
     Route::get('edit/{id}', 'App\Http\Controllers\TaskController@edit');
