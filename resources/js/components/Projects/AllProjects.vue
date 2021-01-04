@@ -65,7 +65,7 @@
                   <div>
                     <div class="text-sm font-medium text-gray-900">
                       <router-link :to="{name: 'project-view', params: { id: project.id }}">
-                      {{ project.user_id }} {{ project.title }}
+                      {{ project.title }}
                       </router-link>
                     </div>
                   </div>
