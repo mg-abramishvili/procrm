@@ -28303,6 +28303,8 @@ var render = function() {
                           [
                             _vm._v(
                               "\n                  " +
+                                _vm._s(project.user_id) +
+                                " " +
                                 _vm._s(project.title) +
                                 "\n                  "
                             )
