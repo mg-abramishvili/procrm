@@ -50,7 +50,7 @@ class ProjectController extends Controller
 
     public function view($id)
     {
-        $project = Project::with('finances')->find($id);
+        $project = Project::with('finances', 'documents')->find($id);
         return response()->json($project);
     }
 

@@ -14,7 +14,7 @@ class LeadController extends Controller
      */
     public function index()
     {
-        return Lead::orderBy('created_at', 'desc')->get();
+        return Lead::where('user_id', \Auth::user()->id)->orderBy('created_at', 'desc')->get();
     }
 
     public function add(Request $request)
@@ -22,6 +22,7 @@ class LeadController extends Controller
         $lead = new Lead([
             'title' => $request->get('title'),
             'text' => $request->get('text'),
+            'user_id' => \Auth::user()->id,
         ]);
         $lead->save();
         return response()->json('The lead successfully added');

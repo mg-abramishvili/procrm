@@ -14,8 +14,8 @@
 
         <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
             <div class="w-full lg:w-1/3">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Название</label>
-                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" :value="project.title" disabled>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Дата создания проекта</label>
+                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" :value="project.created_at | moment" disabled>
             </div>
             <div class="w-full lg:w-1/3">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Заказчик</label>
@@ -39,13 +39,24 @@
         <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
             <div class="w-full lg:w-1/3">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Бюджет</label>
-                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-300" :value="project.budget" disabled>
+                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-300" :value="project.budget | amount" disabled>
             </div>
             <div class="w-full lg:w-1/3" v-for="finance in project.finances" :key="finance.id">
-                <label class="block text-sm font-medium text-gray-700">{{ finance.title }} ({{ finance.date }})</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">{{ finance.title }} ({{ finance.date }})</label>
                 <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-300" :value="finance.amount" disabled>
             </div>
         </div>
+
+        <h2 class="text-xl font-semibold mb-4">Документы и файлы</h2>
+
+        <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
+            <div class="w-full lg:w-1/3" v-for="document in project.documents" :key="document.id">
+                
+                  <a :href="'/uploads/' + document.file" class="underline text-blue-700">{{ document.title }}</a>
+                
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -55,6 +66,21 @@
             return {
                 project: {}
             }
+        },
+        filters: {
+
+          // date filter
+          moment: function (date) {
+            return moment(date).lang("ru").format('LL');
+          },
+
+          // thousand separator with spaces
+          amount: function (value) {
+            if (!value) return ''
+            value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ").slice(-3, 0);
+            return value
+          },
+
         },
         created() {
             this.axios

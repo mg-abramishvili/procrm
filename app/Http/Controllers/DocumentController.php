@@ -16,7 +16,9 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        return Document::with('projects')->orderBy('date', 'desc')->paginate(200);
+        return Document::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->orderBy('date', 'desc')->paginate(200);
     }
 
     public function add(Request $request)

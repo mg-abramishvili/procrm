@@ -3291,6 +3291,22 @@ __webpack_require__.r(__webpack_exports__);
       project: {}
     };
   },
+  filters: {
+    // date filter
+    moment: function (_moment) {
+      function moment(_x) {
+        return _moment.apply(this, arguments);
+      }
+
+      moment.toString = function () {
+        return _moment.toString();
+      };
+
+      return moment;
+    }(function (date) {
+      return moment(date).lang("ru").format('LL');
+    })
+  },
   created: function created() {
     var _this = this;
 
@@ -3373,11 +3389,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       project: {}
     };
+  },
+  filters: {
+    // date filter
+    moment: function (_moment) {
+      function moment(_x) {
+        return _moment.apply(this, arguments);
+      }
+
+      moment.toString = function () {
+        return _moment.toString();
+      };
+
+      return moment;
+    }(function (date) {
+      return moment(date).lang("ru").format('LL');
+    }),
+    // thousand separator with spaces
+    amount: function amount(value) {
+      if (!value) return '';
+      value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ").slice(-3, 0);
+      return value;
+    }
   },
   created: function created() {
     var _this = this;
@@ -28593,9 +28642,27 @@ var render = function() {
         _c("div", { staticClass: "flex flex-wrap items-center mb-6" }, [
           _c("div", { staticClass: "flex w-1/2" }, [
             _c("div", { staticClass: "block" }, [
-              _c("h1", { staticClass: "text-3xl font-semibold mb-4" }, [
-                _vm._v(_vm._s(_vm.project.title))
-              ])
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.project.title,
+                    expression: "project.title"
+                  }
+                ],
+                staticClass: "text-3xl font-semibold mb-4",
+                attrs: { type: "text" },
+                domProps: { value: _vm.project.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.project, "title", $event.target.value)
+                  }
+                }
+              })
             ])
           ]),
           _vm._v(" "),
@@ -28613,30 +28680,14 @@ var render = function() {
               _c(
                 "label",
                 { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
-                [_vm._v("Название")]
+                [_vm._v("Дата создания проекта")]
               ),
               _vm._v(" "),
               _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.project.title,
-                    expression: "project.title"
-                  }
-                ],
                 staticClass:
-                  "block w-full text-md rounded-md py-2 px-2 border border-gray-300",
-                attrs: { type: "text" },
-                domProps: { value: _vm.project.title },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.project, "title", $event.target.value)
-                  }
-                }
+                  "block w-full text-md rounded-md py-2 px-2 border border-gray-200",
+                attrs: { type: "text", disabled: "" },
+                domProps: { value: _vm._f("moment")(_vm.project.created_at) }
               })
             ]),
             _vm._v(" "),
@@ -28939,14 +28990,14 @@ var render = function() {
           _c(
             "label",
             { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
-            [_vm._v("Название")]
+            [_vm._v("Дата создания проекта")]
           ),
           _vm._v(" "),
           _c("input", {
             staticClass:
               "block w-full text-md rounded-md py-2 px-2 border border-gray-200",
             attrs: { type: "text", disabled: "" },
-            domProps: { value: _vm.project.title }
+            domProps: { value: _vm._f("moment")(_vm.project.created_at) }
           })
         ]),
         _vm._v(" "),
@@ -29049,7 +29100,7 @@ var render = function() {
             staticClass:
               "block w-full text-md rounded-md py-2 px-2 border border-gray-300",
             attrs: { type: "text", disabled: "" },
-            domProps: { value: _vm.project.budget }
+            domProps: { value: _vm._f("amount")(_vm.project.budget) }
           })
         ]),
         _vm._v(" "),
@@ -29060,7 +29111,7 @@ var render = function() {
             [
               _c(
                 "label",
-                { staticClass: "block text-sm font-medium text-gray-700" },
+                { staticClass: "block text-sm font-medium text-gray-700 mb-2" },
                 [
                   _vm._v(
                     _vm._s(finance.title) + " (" + _vm._s(finance.date) + ")"
@@ -29079,6 +29130,31 @@ var render = function() {
         })
       ],
       2
+    ),
+    _vm._v(" "),
+    _c("h2", { staticClass: "text-xl font-semibold mb-4" }, [
+      _vm._v("Документы и файлы")
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass:
+          "flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4"
+      },
+      _vm._l(_vm.project.documents, function(document) {
+        return _c("div", { key: document.id, staticClass: "w-full lg:w-1/3" }, [
+          _c(
+            "a",
+            {
+              staticClass: "underline text-blue-700",
+              attrs: { href: "/uploads/" + document.file }
+            },
+            [_vm._v(_vm._s(document.title))]
+          )
+        ])
+      }),
+      0
     )
   ])
 }
