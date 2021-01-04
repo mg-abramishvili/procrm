@@ -16,8 +16,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //return Project::where('user_id', \Auth::user()->id)->latest()->paginate(200);
-        return Project::latest()->paginate(200);
+        return Project::where('user_id', \Auth::user()->id)->latest()->paginate(200);
     }
 
     public function add(Request $request)
