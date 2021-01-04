@@ -45957,237 +45957,75 @@ var routes = [{
 }, {
   name: 'projects',
   path: '/projects',
-  component: _components_Projects_AllProjects_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Projects_AllProjects_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
   name: 'project-add',
   path: '/projects/add',
-  component: _components_Projects_AddProject_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Projects_AddProject_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
   name: 'project-edit',
   path: '/projects/edit/:id',
-  component: _components_Projects_EditProject_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Projects_EditProject_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   name: 'project-view',
   path: '/projects/view/:id',
-  component: _components_Projects_ViewProject_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Projects_ViewProject_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   name: 'finances',
   path: '/finances',
-  component: _components_Finances_AllFinances_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Finances_AllFinances_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   name: 'finance-add',
   path: '/finances/add',
-  component: _components_Finances_AddFinance_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Finances_AddFinance_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }, {
   name: 'finance-edit',
   path: '/finances/edit/:id',
-  component: _components_Finances_EditFinance_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Finances_EditFinance_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
 }, {
   name: 'finance-view',
   path: '/finances/view/:id',
-  component: _components_Finances_ViewFinance_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Finances_ViewFinance_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
 }, {
   name: 'tasks',
   path: '/tasks',
-  component: _components_Tasks_AllTasks_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Tasks_AllTasks_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
 }, {
   name: 'task-add',
   path: '/tasks/add',
-  component: _components_Tasks_AddTask_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Tasks_AddTask_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
 }, {
   name: 'task-edit',
   path: '/tasks/edit/:id',
-  component: _components_Tasks_EditTask_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Tasks_EditTask_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
 }, {
   name: 'leads',
   path: '/leads',
-  component: _components_Leads_AllLeads_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Leads_AllLeads_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
 }, {
   name: 'lead-add',
   path: '/leads/add',
-  component: _components_Leads_AddLead_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Leads_AddLead_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
 }, {
   name: 'lead-edit',
   path: '/leads/edit/:id',
-  component: _components_Leads_EditLead_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Leads_EditLead_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
 }, {
   name: 'documents',
   path: '/documents',
-  component: _components_Documents_AllDocuments_vue__WEBPACK_IMPORTED_MODULE_15__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Documents_AllDocuments_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
 }, {
   name: 'document-add',
   path: '/documents/add',
-  component: _components_Documents_AddDocument_vue__WEBPACK_IMPORTED_MODULE_16__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Documents_AddDocument_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
 }, {
   name: 'document-edit',
   path: '/documents/edit/:id',
-  component: _components_Documents_EditDocument_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Documents_EditDocument_vue__WEBPACK_IMPORTED_MODULE_17__["default"]
 }, {
   name: 'document-view',
   path: '/documents/view/:id',
-  component: _components_Documents_ViewDocument_vue__WEBPACK_IMPORTED_MODULE_18__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/auth').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'login'
-      });
-    });
-  }
+  component: _components_Documents_ViewDocument_vue__WEBPACK_IMPORTED_MODULE_18__["default"]
 }];
 
 /***/ }),
