@@ -68,9 +68,9 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-right text-gray-800 w-1/5">
                             @if($financeItem->fin_type == 'plus')
-                            <span class="px-4 py-2 inline-flex text-sm leading-3 font-bold rounded-full bg-green-100 text-gray-700">+ {{ $financeItem->amount }} ₽</span>
+                            <span class="px-4 py-2 inline-flex text-sm leading-3 font-bold rounded-full bg-green-100 text-gray-700">+ {{ number_format($financeItem->amount, 0, ',', ' ') }} ₽</span>
                             @elseif($financeItem->fin_type == 'minus')
-                            <span class="px-4 py-2 inline-flex text-sm leading-3 font-bold rounded-full bg-red-100 text-gray-700">- {{ $financeItem->amount }} ₽</span>
+                            <span class="px-4 py-2 inline-flex text-sm leading-3 font-bold rounded-full bg-red-100 text-gray-700">- {{ number_format($financeItem->amount, 0, ',', ' ') }} ₽</span>
                             @endif
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium w-1/4">
