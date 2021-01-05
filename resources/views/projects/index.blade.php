@@ -94,7 +94,7 @@
                 <div class="flex items-center">
                   <div>
                     <div class="text-sm font-medium text-gray-900">
-                      {{ $project->budget }} ₽
+                      {{ number_format($project->budget, 0, ',', ' ') }} ₽
                     </div>
                   </div>
                 </div>
