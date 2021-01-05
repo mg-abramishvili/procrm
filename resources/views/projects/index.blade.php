@@ -91,7 +91,7 @@
               @isset($project_conf->index_table_budget_column)
               @if($project_conf->index_table_budget_column == 'y')
               <td class="px-8 py-4 whitespace-nowrap text-right">
-                <div class="flex items-center">
+                <div class="flex items-center justify-end">
                   <div>
                     <div class="text-sm font-medium text-gray-900">
                       {{ number_format($project->budget, 0, ',', ' ') }} ₽
