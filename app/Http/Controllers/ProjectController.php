@@ -25,7 +25,7 @@ class ProjectController extends Controller
 
     public function create()
     {
-        $clients = Client::all();
+        $clients = Client::where('user_id', \Auth::user()->id)->get();
         return view('projects.create', compact('clients'));
     }
 
@@ -40,7 +40,6 @@ class ProjectController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'client' => 'required',
             'budget' => 'required',
             'status' => 'required',
         ]);
@@ -48,12 +47,12 @@ class ProjectController extends Controller
         $data = request()->all();
         $project = new Project();
         $project->title = $data['title'];
-        $project->client = $data['client'];
         $project->budget = $data['budget'];
         $project->status = $data['status'];
         $project->comment = $data['comment'];
         $project->user_id = \Auth::user()->id;
         $project->save();
+        $project->clients()->attach($request->clients, ['project_id' => $project->id]);
         return redirect('/projects');
     }
 
@@ -61,7 +60,6 @@ class ProjectController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'client' => 'required',
             'budget' => 'required',
             'status' => 'required',
         ]);
@@ -69,7 +67,6 @@ class ProjectController extends Controller
         $data = request()->all();
         $project = Project::find($data['id']);
         $project->title = $data['title'];
-        $project->client = $data['client'];
         $project->budget = $data['budget'];
         $project->status = $data['status'];
         $project->comment = $data['comment'];
