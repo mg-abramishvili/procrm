@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Finance;
 use App\Models\Document;
 use App\Models\Client;
+use App\Models\ProjectConfiguration;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -20,7 +21,10 @@ class ProjectController extends Controller
         $projects = Project::where('user_id', \Auth::user()->id)->latest()->paginate(200);
         $projects_active = Project::where('user_id', \Auth::user()->id)->where('status', 'active')->latest()->paginate(200);
 
-        return view('projects.index', compact('projects', 'projects_active'));
+        $project_conf = ProjectConfiguration::where('user_id', \Auth::user()->id)->latest()->first();
+        
+        return view('projects.index', compact('projects', 'projects_active', 'project_conf'));
+        //dd($project_conf);
     }
 
     public function create()

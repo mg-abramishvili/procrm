@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\ProjectConfiguration;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -9,7 +10,10 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('users.edit', compact('user'));
+
+        $project_conf = ProjectConfiguration::where('user_id', \Auth::user()->id)->latest()->first();
+
+        return view('users.edit', compact('user', 'project_conf'));
     }
 
     public function update(Request $request)

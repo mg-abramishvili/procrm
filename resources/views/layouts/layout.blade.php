@@ -44,7 +44,7 @@
                     <span class="flex-1 font-semibold text-gray-600">Заявки</span>
                 </a>
                 <hr class="mt-3 mb-3">
-                <a href="/users/{{ \Auth::user()->id }}" class="w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
+                <a href="/users/{{ \Auth::user()->id }}/edit" class="w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
                     <img src="/img/user.svg" class="w-6 opacity-60 mr-2" />
                     <span class="flex-1 font-semibold text-gray-600">{{ \Auth::user()->fio }}</span>
                 </a>
