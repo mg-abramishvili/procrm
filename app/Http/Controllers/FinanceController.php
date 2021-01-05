@@ -31,14 +31,19 @@ class FinanceController extends Controller
         $finances_collection_y = Finance::with('projects')->whereHas('projects', function ($query) {
             $query->where('projects.user_id', \Auth::user()->id);
         })->latest();
+        $finances_collection_y_past = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest();
 
         $current_month = Carbon::now()->format('m');
         $current_year = Carbon::now()->format('Y');
+        $past_year = Carbon::now()->subYear(1)->format('Y');
 
         $finances_month = $finances_collection_m->whereYear('date', $current_year)->whereMonth('date', $current_month)->where('fin_type', 'plus')->get()->sum('amount');
         $finances_year = $finances_collection_y->whereYear('date', $current_year)->where('fin_type', 'plus')->get()->sum('amount');
+        $finances_year_past = $finances_collection_y_past->whereYear('date', $past_year)->where('fin_type', 'plus')->get()->sum('amount');
 
-        return view('finances.index', compact('finances', 'current_month', 'current_year', 'finances_month', 'finances_year'));
+        return view('finances.index', compact('finances', 'current_month', 'current_year', 'finances_month', 'finances_year', 'finances_year_past'));
         //dd($finances);
     }
 
