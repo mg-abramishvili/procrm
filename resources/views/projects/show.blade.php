@@ -45,7 +45,7 @@
         <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
             <div class="w-full lg:w-1/3">
               <h2 class="text-xl font-semibold mb-4">Бюджет</h2>
-                <span class="block w-full text-5xl font-semibold text-blue-600">{{ $project->budget }} ₽</span>
+                <span class="block w-full text-5xl font-semibold text-blue-600">{{ number_format($project->budget, 0, ',', ' ') }} ₽</span>
             </div>
             <div class="w-full lg:w-1/3">
               <h2 class="text-xl font-semibold mb-4">Поступления</h2>
