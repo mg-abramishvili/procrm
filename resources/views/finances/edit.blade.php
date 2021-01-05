@@ -33,7 +33,7 @@
                             <label class="block text-sm font-medium text-gray-700">Проект</label>
                             <select class="block w-full text-md rounded-md p-1 border border-gray-300" name="projects">
                             @foreach($projects as $project)
-                                <option value="{{ $project->id }}">{{ $project->title }}</option>
+                                <option value="{{ $project->id }}" @foreach($finance->projects as $t) @if($project->id == $t->id)selected="selected"@endif @endforeach>{{ $project->title }}</option>
                             @endforeach
                             </select>
                         </div>
