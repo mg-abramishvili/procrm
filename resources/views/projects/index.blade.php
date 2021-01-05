@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="flex w-1/2 justify-end">
-          <a href="/projects/add" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">Добавить проект</a>
+          <a href="/projects/create" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">Добавить проект</a>
         </div>
       </div>
 
@@ -74,12 +74,26 @@
                 </div>
               </td>
               <td class="px-8 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">{{ $project->client }}</div>
+                <div class="text-sm text-gray-900">
+                  @foreach($project->clients as $client)
+                    {{ $client->name }}
+                  @endforeach
+                </div>
               </td>
               <td class="px-8 py-4 whitespace-nowrap">
+                @if($project->status == 'active')
                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-700">
-                {{ $project->status }}
+                  в работе
                 </span>
+                @elseif($project->status == 'archive')
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  завершен
+                </span>
+                @else
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                  {{ $project->status }}
+                </span>
+                @endif
               </td>
             </tr>
             @endforeach

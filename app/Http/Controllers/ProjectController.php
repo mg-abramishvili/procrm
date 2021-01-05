@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Finance;
 use App\Models\Document;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -22,25 +23,37 @@ class ProjectController extends Controller
         return view('projects.index', compact('projects', 'projects_active'));
     }
 
-    public function add(Request $request)
+    public function create()
     {
-        $project = new Project([
-            'title' => $request->get('title'),
-            'client' => $request->get('client'),
-            'budget' => $request->get('budget'),
-            'status' => $request->get('status'),
-            'comment' => $request->get('comment'),
-            'user_id' => \Auth::user()->id,
-        ]);
-        $project->save();
-
-        return response()->json('The project successfully added');
+        return view('projects.create');
     }
 
     public function edit($id)
     {
         $project = Project::find($id);
-        return view('projects.edit', compact('project'));
+        $clients = Client::all();
+        return view('projects.edit', compact('project', 'clients'));
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'client' => 'required',
+            'budget' => 'required',
+            'status' => 'required',
+        ]);
+
+        $data = request()->all();
+        $project = new Project();
+        $project->title = $data['title'];
+        $project->client = $data['client'];
+        $project->budget = $data['budget'];
+        $project->status = $data['status'];
+        $project->comment = $data['comment'];
+        $project->user_id = \Auth::user()->id;
+        $project->save();
+        return redirect('/projects');
     }
 
     public function update(Request $request)
@@ -60,6 +73,8 @@ class ProjectController extends Controller
         $project->status = $data['status'];
         $project->comment = $data['comment'];
         $project->save();
+        $project->clients()->detach();
+        $project->clients()->attach($request->clients, ['project_id' => $project->id]);
         return redirect('/projects');
     }
 

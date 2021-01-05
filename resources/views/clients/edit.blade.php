@@ -25,12 +25,6 @@
                         <div class="w-full lg:w-1/3">
                             <label class="block text-sm font-medium text-gray-700 mb-2">Заказчик</label>
                             <input name="client" type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-300" value="{{ $project->client }}">
-
-                            <select name="clients" class="block w-full text-md rounded-md py-2 px-2 border border-gray-300">
-                                @foreach($clients as $client)
-                                    <option value="{{$client->id}}" @foreach($project->clients as $t) @if($client->id == $t->id)selected="selected"@endif @endforeach>{{$client->name}}</option>
-                                @endforeach
-                            </select>
                         </div>
                         <div class="w-full lg:w-1/3">
                             <label class="block text-sm font-medium text-gray-700 mb-2">Статус</label>

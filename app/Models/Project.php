@@ -28,6 +28,11 @@ class Project extends Model
         return $this->belongsToMany('App\Models\Document');
     }
 
+    public function clients()
+    {
+        return $this->belongsToMany('App\Models\Client');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');

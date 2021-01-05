@@ -20,9 +20,7 @@
             </div>
             <div class="w-full lg:w-1/3">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Заказчик</label>
-                @foreach($project->clients as $client)
-                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" value="{{ $client->name }}" disabled>
-                @endforeach
+                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" value="{{ $project->client }}" disabled>
             </div>
             <div class="w-full lg:w-1/3">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Статус</label>

@@ -19,7 +19,7 @@
                     <span class="flex-1 font-semibold text-gray-600">Проекты</span>
                 </a>
 
-                <a href="/tasks" class="w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
+                <a href="#" class="opacity-50 w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
                     <img src="/img/clipboard-check.svg" class="w-6 opacity-60 mr-2" />
                     <span class="flex-1 font-semibold text-gray-600">Задачи</span>
                 </a>
@@ -29,19 +29,24 @@
                     <span class="flex-1 font-semibold text-gray-600">Финансы</span>
                 </a>
 
-                <a href="/documents" class="w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
+                <a href="#" class="opacity-50 w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
                     <img src="/img/file-text.svg" class="w-6 opacity-60 mr-2" />
                     <span class="flex-1 font-semibold text-gray-600">Документы</span>
                 </a>
 
-                <a href="/leads" class="w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
+                <a href="/clients" class="w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
+                    <img src="/img/stack.svg" class="w-6 opacity-60 mr-2" />
+                    <span class="flex-1 font-semibold text-gray-600">Заказчики</span>
+                </a>
+
+                <a href="#" class="opacity-50 w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
                     <img src="/img/pennant.svg" class="w-6 opacity-60 mr-2" />
                     <span class="flex-1 font-semibold text-gray-600">Заявки</span>
                 </a>
                 <hr class="mt-3 mb-3">
-                <a href="#" class="w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
+                <a href="/users/{{ \Auth::user()->id }}" class="w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
                     <img src="/img/user.svg" class="w-6 opacity-60 mr-2" />
-                    <span class="flex-1 font-semibold text-gray-600">{{ \Auth::user()->name }}</span>
+                    <span class="flex-1 font-semibold text-gray-600">{{ \Auth::user()->fio }}</span>
                 </a>
             </nav>
             
