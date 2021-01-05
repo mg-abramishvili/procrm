@@ -55,11 +55,13 @@
               <th scope="col" class="px-8 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Заказчик
               </th>
+              @isset($project_conf->index_table_budget_column)
               @if($project_conf->index_table_budget_column == 'y')
               <th scope="col" class="px-8 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Бюджет
               </th>
               @endif
+              @endisset
               <th scope="col" class="px-8 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Статус
               </th>
@@ -86,6 +88,7 @@
                   @endforeach
                 </div>
               </td>
+              @isset($project_conf->index_table_budget_column)
               @if($project_conf->index_table_budget_column == 'y')
               <td class="px-8 py-4 whitespace-nowrap">
                 <div class="flex items-center">
@@ -97,6 +100,7 @@
                 </div>
               </td>
               @endif
+              @endisset
               <td class="px-8 py-4 whitespace-nowrap">
                 @if($project->status == 'active')
                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-700">
