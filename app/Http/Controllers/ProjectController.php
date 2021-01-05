@@ -32,7 +32,7 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
-        $clients = Client::all();
+        $clients = Client::where('user_id', \Auth::user()->id)->get();
         return view('projects.edit', compact('project', 'clients'));
     }
 
