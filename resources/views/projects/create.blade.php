@@ -17,7 +17,11 @@
             </div>
             <div class="w-full lg:w-1/3">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Заказчик</label>
-                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" name="client">
+                <select name="clients" class="block w-full text-md rounded-md py-2 px-2 border border-gray-300">
+                                @foreach($clients as $client)
+                                    <option value="{{$client->id}}">{{$client->name}}</option>
+                                @endforeach
+                            </select>
             </div>
             <div class="w-full lg:w-1/3">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Статус</label>
@@ -38,11 +42,11 @@
 
         <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
             <div class="w-full lg:w-1/3">
-                <label class="block text-sm font-medium text-gray-700">Бюджет</label>
-                <input type="text" class="block w-full text-md rounded-md p-1 border border-gray-300" name="budget">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Бюджет</label>
+                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-300" name="budget">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Добавить</button>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">Добавить</button>
       </form>
 
     </div>

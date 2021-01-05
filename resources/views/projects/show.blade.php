@@ -51,7 +51,19 @@
               <h2 class="text-xl font-semibold mb-4">Поступления</h2>
                 <ul>
                 @foreach($project->finances as $finance)
-                <li class="block text-md font-bold text-green-700 mb-2">{{ $finance->amount }} ₽ <small class="block text-sm font-normal text-gray-500">{{ $finance->title }} ({{ $finance->date }})</small></li>
+                  @if($finance->fin_type == 'plus')
+                    <li class="block text-md font-bold text-green-700 mb-2">+ {{ $finance->amount }} ₽ <small class="block text-sm font-normal text-gray-500">{{ $finance->title }} ({{ $finance->date }})</small></li>
+                  @endif
+                @endforeach
+                </ul>
+            </div>
+            <div class="w-full lg:w-1/3">
+              <h2 class="text-xl font-semibold mb-4">Расходы</h2>
+                <ul>
+                @foreach($project->finances as $finance)
+                  @if($finance->fin_type == 'minus')
+                    <li class="block text-md font-bold text-red-700 mb-2">- {{ $finance->amount }} ₽ <small class="block text-sm font-normal text-gray-500">{{ $finance->title }} ({{ $finance->date }})</small></li>
+                  @endif
                 @endforeach
                 </ul>
             </div>
@@ -62,9 +74,11 @@
         <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
             @foreach($project->documents as $document)
             <div class="w-full lg:w-1/3">
-                
-                  <a href="{{ $document->file }}" class="underline text-blue-700">{{ $document->title }}</a>
-                
+                @if (pathinfo($document->file, PATHINFO_EXTENSION) == 'jpg')
+                  <img src="/uploads/{{ $document->file }}" style="width:150px;"/>
+                @else
+                  <a href="/uploads/{{ $document->file }}" class="underline text-blue-700">{{ $document->title }}</a>
+                @endif
             </div>
             @endforeach
         </div>

@@ -21,7 +21,9 @@ class FinanceController extends Controller
 
         $finances = Finance::with('projects')->whereHas('projects', function ($query) {
             $query->where('projects.user_id', \Auth::user()->id);
-        })->get();
+        })->orderBy('date', 'desc')->get()->groupBy(function($d) {
+            return Carbon::parse($d->date)->format('Y-m');
+        });
 
         $finances_collection_m = Finance::with('projects')->whereHas('projects', function ($query) {
             $query->where('projects.user_id', \Auth::user()->id);
@@ -33,11 +35,11 @@ class FinanceController extends Controller
         $current_month = Carbon::now()->format('m');
         $current_year = Carbon::now()->format('Y');
 
-        $finances_month = $finances_collection_m->whereYear('date', $current_year)->whereMonth('date', $current_month)->get()->sum('amount');
-        $finances_year = $finances_collection_y->whereYear('date', $current_year)->get()->sum('amount');
+        $finances_month = $finances_collection_m->whereYear('date', $current_year)->whereMonth('date', $current_month)->where('fin_type', 'plus')->get()->sum('amount');
+        $finances_year = $finances_collection_y->whereYear('date', $current_year)->where('fin_type', 'plus')->get()->sum('amount');
 
         return view('finances.index', compact('finances', 'current_month', 'current_year', 'finances_month', 'finances_year'));
-        //dd($finances_month);
+        //dd($finances);
     }
 
 
@@ -54,6 +56,7 @@ class FinanceController extends Controller
             'amount' => 'required',
             'date' => 'required',
             'projects' => 'required',
+            'fin_type' => 'required',
         ]);
 
         $data = request()->all();
@@ -61,6 +64,7 @@ class FinanceController extends Controller
         $finance->title = $data['title'];
         $finance->amount = $data['amount'];
         $finance->date = $data['date'];
+        $finance->fin_type = $data['fin_type'];
         $finance->save();
         $finance->projects()->attach($request->projects, ['finance_id' => $finance->id]);
         return redirect('/finances');
@@ -69,15 +73,30 @@ class FinanceController extends Controller
     public function edit($id)
     {
         $finance = Finance::find($id);
-        return response()->json($finance);
+        $projects = Project::where('user_id', \Auth::user()->id)->latest()->get();
+        return view('finances.edit', compact('finance', 'projects'));
     }
 
     public function update($id, Request $request)
     {
-        $finance = Finance::find($id);
-        $finance->update($request->all());
+        $this->validate($request, [
+            'title' => 'required',
+            'amount' => 'required',
+            'date' => 'required',
+            'projects' => 'required',
+            'fin_type' => 'required',
+        ]);
 
-        return response()->json('The finance successfully updated');
+        $data = request()->all();
+        $finance = Finance::find($id);
+        $finance->title = $data['title'];
+        $finance->amount = $data['amount'];
+        $finance->date = $data['date'];
+        $finance->fin_type = $data['fin_type'];
+        $finance->save();
+        $finance->projects()->detach();
+        $finance->projects()->attach($request->projects, ['finance_id' => $finance->id]);
+        return redirect('/finances');
     }
 
     public function view($id)

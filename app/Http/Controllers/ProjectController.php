@@ -25,7 +25,8 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return view('projects.create');
+        $clients = Client::all();
+        return view('projects.create', compact('clients'));
     }
 
     public function edit($id)

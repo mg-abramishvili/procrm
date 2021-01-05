@@ -10,7 +10,7 @@ class Finance extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'amount', 'date'
+        'title', 'amount', 'date', 'fin_type'
     ];
 
     public function projects()
