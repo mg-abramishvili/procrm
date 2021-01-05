@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Finance;
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class FinanceController extends Controller
 {
@@ -18,21 +19,51 @@ class FinanceController extends Controller
     {
         //return Finance::with('projects')->orderBy('date', 'desc')->paginate(200);
 
-        return Finance::with('projects')->whereHas('projects', function ($query) {
+        $finances = Finance::with('projects')->whereHas('projects', function ($query) {
             $query->where('projects.user_id', \Auth::user()->id);
-        })->orderBy('date', 'desc')->paginate(200);
+        })->get();
+
+        $finances_collection_m = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest();
+        $finances_collection_y = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest();
+
+        $current_month = Carbon::now()->format('m');
+        $current_year = Carbon::now()->format('Y');
+
+        $finances_month = $finances_collection_m->whereMonth('date', $current_month)->get()->sum('amount');
+        $finances_year = $finances_collection_y->whereYear('date', $current_year)->get()->sum('amount');
+
+        return view('finances.index', compact('finances', 'current_month', 'current_year', 'finances_month', 'finances_year'));
+        //dd($finances_month);
     }
 
-    public function add(Request $request)
+
+    public function create()
     {
-        $finance = new Finance([
-            'title' => $request->get('title'),
-            'amount' => $request->get('amount'),
-            'date' => $request->get('date'),
+        $projects = Project::where('user_id', \Auth::user()->id)->latest()->get();
+        return view('finances.create', compact('projects'));
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'amount' => 'required',
+            'date' => 'required',
+            'projects' => 'required',
         ]);
+
+        $data = request()->all();
+        $finance = new Finance();
+        $finance->title = $data['title'];
+        $finance->amount = $data['amount'];
+        $finance->date = $data['date'];
         $finance->save();
         $finance->projects()->attach($request->projects, ['finance_id' => $finance->id]);
-        return response()->json('The finance successfully added');
+        return redirect('/finances');
     }
 
     public function edit($id)

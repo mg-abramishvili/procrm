@@ -3,32 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\FinanceController;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\LeadController;
-use App\Http\Controllers\DocumentController;
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::middleware('auth:sanctum')->get('/auth', function () {
-    return true;
-});
-
-Route::post('login', 'App\Http\Controllers\LoginController@login');
-
-Route::get('projects', 'App\Http\Controllers\ProjectController@index')->middleware('auth:sanctum')->middleware('throttle:60,1');
-Route::group(['prefix' => 'project'], function () {
-    Route::post('add', 'App\Http\Controllers\ProjectController@add')->middleware('throttle:60,1');
-    Route::get('edit/{id}', 'App\Http\Controllers\ProjectController@edit')->middleware('throttle:60,1');
-    Route::post('update/{id}', 'App\Http\Controllers\ProjectController@update')->middleware('throttle:60,1');
-    Route::get('view/{id}', 'App\Http\Controllers\ProjectController@view')->middleware('throttle:60,1');
-    Route::delete('delete/{id}', 'App\Http\Controllers\ProjectController@delete')->middleware('throttle:60,1');
-});
-
 Route::get('finances', 'App\Http\Controllers\FinanceController@index')->middleware('auth:sanctum')->middleware('throttle:60,1');
 Route::group(['prefix' => 'finance'], function () {
     Route::post('add', 'App\Http\Controllers\FinanceController@add')->middleware('throttle:60,1');

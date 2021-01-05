@@ -16,7 +16,10 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return Project::where('user_id', \Auth::user()->id)->latest()->paginate(200);
+        $projects = Project::where('user_id', \Auth::user()->id)->latest()->paginate(200);
+        $projects_active = Project::where('user_id', \Auth::user()->id)->where('status', 'active')->latest()->paginate(200);
+
+        return view('projects.index', compact('projects', 'projects_active'));
     }
 
     public function add(Request $request)
@@ -37,21 +40,33 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
-        return response()->json($project);
+        return view('projects.edit', compact('project'));
     }
 
-    public function update($id, Request $request)
+    public function update(Request $request)
     {
-        $project = Project::find($id);
-        $project->update($request->all());
+        $this->validate($request, [
+            'title' => 'required',
+            'client' => 'required',
+            'budget' => 'required',
+            'status' => 'required',
+        ]);
 
-        return response()->json('The project successfully updated');
+        $data = request()->all();
+        $project = Project::find($data['id']);
+        $project->title = $data['title'];
+        $project->client = $data['client'];
+        $project->budget = $data['budget'];
+        $project->status = $data['status'];
+        $project->comment = $data['comment'];
+        $project->save();
+        return redirect('/projects');
     }
 
-    public function view($id)
+    public function show($id)
     {
         $project = Project::with('finances', 'documents')->find($id);
-        return response()->json($project);
+        return view('projects.show', compact('project'));
     }
 
     public function delete($id)
