@@ -33,7 +33,7 @@ class FinanceController extends Controller
         $current_month = Carbon::now()->format('m');
         $current_year = Carbon::now()->format('Y');
 
-        $finances_month = $finances_collection_m->whereMonth('date', $current_month)->get()->sum('amount');
+        $finances_month = $finances_collection_m->whereYear('date', $current_year)->whereMonth('date', $current_month)->get()->sum('amount');
         $finances_year = $finances_collection_y->whereYear('date', $current_year)->get()->sum('amount');
 
         return view('finances.index', compact('finances', 'current_month', 'current_year', 'finances_month', 'finances_year'));
