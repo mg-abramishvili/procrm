@@ -57,7 +57,7 @@
               </th>
               @isset($project_conf->index_table_budget_column)
               @if($project_conf->index_table_budget_column == 'y')
-              <th scope="col" class="px-8 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th scope="col" class="px-8 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 text-right uppercase tracking-wider">
                 Бюджет
               </th>
               @endif
@@ -90,7 +90,7 @@
               </td>
               @isset($project_conf->index_table_budget_column)
               @if($project_conf->index_table_budget_column == 'y')
-              <td class="px-8 py-4 whitespace-nowrap">
+              <td class="px-8 py-4 whitespace-nowrap text-right">
                 <div class="flex items-center">
                   <div>
                     <div class="text-sm font-medium text-gray-900">
