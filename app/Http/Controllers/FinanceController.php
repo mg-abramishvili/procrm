@@ -45,7 +45,7 @@ class FinanceController extends Controller
         // CURRENT MONTH
         $current_month = Carbon::now()->format('m');
         // PAST MONTH (-1)
-        $past_month = Carbon::now()->subMonth(12)->format('m');
+        $past_month = Carbon::now()->subMonth(1)->format('m');
         // CURRENT YEAR
         $current_year = Carbon::now()->format('Y');
         // PAST YEAR (-1)
@@ -75,7 +75,7 @@ class FinanceController extends Controller
         if($finances_month > $finances_month_past) {
             $finances_past_current_month_percent = $finances_month / $finances_month_past * 100 - 100;
         } else {
-            $finances_past_current_month_percent = $finances_month_past / $finances_month * 100 - 100;
+            $finances_past_current_month_percent = $finances_month / $finances_month_past * 100 - 100;
         }
 
         // PERCENT FOR PAST-CURRENT YEAR
