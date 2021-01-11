@@ -17,34 +17,75 @@ class FinanceController extends Controller
      */
     public function index()
     {
-        //return Finance::with('projects')->orderBy('date', 'desc')->paginate(200);
-
         $finances = Finance::with('projects')->whereHas('projects', function ($query) {
             $query->where('projects.user_id', \Auth::user()->id);
         })->orderBy('date', 'desc')->get()->groupBy(function($d) {
             return Carbon::parse($d->date)->format('Y-m');
         });
 
+        // CURRENT MONTH COLLECTION
         $finances_collection_m = Finance::with('projects')->whereHas('projects', function ($query) {
             $query->where('projects.user_id', \Auth::user()->id);
         })->latest();
+        // PAST MONTH COLLECTION (-1)
+        $finances_collection_m_past = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest();
+        // CURRENT YEAR COLLECTION
         $finances_collection_y = Finance::with('projects')->whereHas('projects', function ($query) {
             $query->where('projects.user_id', \Auth::user()->id);
         })->latest();
+        // PAST YEAR COLLECTION (-1)
         $finances_collection_y_past = Finance::with('projects')->whereHas('projects', function ($query) {
             $query->where('projects.user_id', \Auth::user()->id);
         })->latest();
 
+
+
+        // CURRENT MONTH
         $current_month = Carbon::now()->format('m');
+        // PAST MONTH (-1)
+        $past_month = Carbon::now()->subMonth(1)->format('m');
+        // CURRENT YEAR
         $current_year = Carbon::now()->format('Y');
+        // PAST YEAR (-1)
         $past_year = Carbon::now()->subYear(1)->format('Y');
 
-        $finances_month = $finances_collection_m->whereYear('date', $current_year)->whereMonth('date', $current_month)->where('fin_type', 'plus')->get()->sum('amount');
-        $finances_year = $finances_collection_y->whereYear('date', $current_year)->where('fin_type', 'plus')->get()->sum('amount');
-        $finances_year_past = $finances_collection_y_past->whereYear('date', $past_year)->where('fin_type', 'plus')->get()->sum('amount');
 
-        return view('finances.index', compact('finances', 'current_month', 'current_year', 'finances_month', 'finances_year', 'finances_year_past'));
-        //dd($finances);
+
+        // SUMS OF CURRENT MONTH
+        $finances_month = $finances_collection_m->whereYear('date', $current_year)->whereMonth('date', $current_month)->where('fin_type', 'plus')->get()->sum('amount');
+        
+        // SUMS OF PAST MONTH
+        if ($current_month == '01') {
+            $finances_month_past = $finances_collection_m_past->whereYear('date', $past_year)->whereMonth('date', $past_month)->where('fin_type', 'plus')->get()->sum('amount');
+        } else {
+            $finances_month_past = $finances_collection_m_past->whereYear('date', $current_year)->whereMonth('date', $past_month)->where('fin_type', 'plus')->get()->sum('amount');
+        }
+
+        // SUMS OF CURRENT YEAR
+        $finances_year = $finances_collection_y->whereYear('date', $current_year)->where('fin_type', 'plus')->get()->sum('amount');
+        
+        // SUMS OF PAST YEAR (-1)
+        $finances_year_past = $finances_collection_y_past->whereYear('date', $past_year)->where('fin_type', 'plus')->get()->sum('amount');
+        
+        
+        
+        // PERCENT FOR PAST-CURRENT MONTH
+        if ($finances_month > $finances_month_past) {
+            $finances_past_current_month_percent = $finances_month_past / $finances_month * 100;
+        } else {
+            $finances_past_current_month_percent = $finances_month / $finances_month_past * 100;
+        }
+        // PERCENT FOR PAST-CURRENT YEAR
+        if ($finances_year > $finances_year_past) {
+            $finances_past_current_year_percent = $finances_year_past / $finances_year * 100;
+        } else {
+            $finances_past_current_year_percent = $finances_year / $finances_year_past * 100;
+        }
+
+        return view('finances.index', compact('finances', 'current_month', 'current_year', 'past_year', 'finances_month', 'finances_year', 'finances_year_past', 'finances_past_current_year_percent', 'finances_month_past', 'finances_past_current_month_percent'));
+        //dd($current_month);
     }
 
 

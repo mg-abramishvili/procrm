@@ -13,7 +13,21 @@
         </div>
 
         <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-12 px-8">
-            <div class="w-full lg:w-1/2">
+            <div class="w-full lg:w-1/4">
+                <div class="widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890">
+                    <div class="flex flex-row items-center justify-between">
+                        <div class="flex flex-col">
+                            <div class="text-xs uppercase font-light text-grey-500">
+                                {{ \Carbon\Carbon::now()->subMonth(1)->locale('ru')->isoFormat('MMMM') }}
+                            </div>
+                            <div class="text-xl font-bold">
+                                {{ number_format($finances_month_past, 0, ',', ' ') }} ₽
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/4">
                 <div class="widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890">
                     <div class="flex flex-row items-center justify-between">
                         <div class="flex flex-col">
@@ -21,13 +35,33 @@
                                 {{ \Carbon\Carbon::now()->locale('ru')->isoFormat('MMMM') }}
                             </div>
                             <div class="text-xl font-bold">
-                                {{ $finances_month }} ₽
+                                {{ number_format($finances_month, 0, ',', ' ') }} ₽
+
+                                @if($finances_month > $finances_month_past)
+                                    <span class="text-green-500">+{{ number_format($finances_past_current_month_percent, 0, ',', ' ') }}%</span>
+                                @else
+                                    <span class="text-red-500">-{{ number_format($finances_past_current_month_percent, 0, ',', ' ') }}%</span>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="w-full lg:w-1/2">
+            <div class="w-full lg:w-1/4">
+                <div class="widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890">
+                    <div class="flex flex-row items-center justify-between">
+                        <div class="flex flex-col">
+                            <div class="text-xs uppercase font-light text-grey-500">
+                                {{ $past_year }} год
+                            </div>
+                            <div class="text-xl font-bold">
+                                {{ number_format($finances_year_past, 0, ',', ' ') }} ₽
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/4">
                 <div class="widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890">
                     <div class="flex flex-row items-center justify-between">
                         <div class="flex flex-col">
@@ -35,7 +69,15 @@
                                 {{ $current_year }} год
                             </div>
                             <div class="text-xl font-bold">
-                                {{ $finances_year }} ₽
+                                {{ number_format($finances_year, 0, ',', ' ') }} ₽
+                                
+                                @if($finances_year > $finances_year_past)
+                                    <span class="text-green-500">+{{ number_format($finances_past_current_year_percent, 0, ',', ' ') }}%</span>
+                                @else
+                                    <span class="text-red-500">-{{ number_format($finances_past_current_year_percent, 0, ',', ' ') }}%</span>
+                                @endif
+                                
+                                <!--<span class="block text-sm font-normal text-gray-400">{{ number_format($finances_year_past, 0, ',', ' ') }} ₽</span>-->
                             </div>
                         </div>
                     </div>
