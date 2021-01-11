@@ -72,13 +72,22 @@ class FinanceController extends Controller
         
         
         // PERCENT FOR PAST-CURRENT MONTH
-        $finances_past_current_month_percent = $finances_month / $finances_month_past * 100 - 100;
+        if (!$finances_month_past) {
+            $finances_past_current_month_percent = $finances_month / 1;
+        } else {
+            $finances_past_current_month_percent = $finances_month / $finances_month_past * 100 - 100;
+        }
+        
 
         // PERCENT FOR PAST-CURRENT YEAR
-        $finances_past_current_year_percent = $finances_year / $finances_year_past * 100 - 100;
+        if (!$finances_month_past) {
+            $finances_past_current_year_percent = $finances_year / 1;
+        } else {
+            $finances_past_current_year_percent = $finances_year / $finances_year_past * 100 - 100;
+        }
 
         return view('finances.index', compact('finances', 'current_month', 'current_year', 'past_year', 'finances_month', 'finances_year', 'finances_year_past', 'finances_past_current_year_percent', 'finances_month_past', 'finances_past_current_month_percent'));
-        //dd($finances_past_current_year_percent);
+        //dd($finances_month);
     }
 
 
