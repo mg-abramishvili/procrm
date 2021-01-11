@@ -82,7 +82,7 @@ class FinanceController extends Controller
         if($finances_year > $finances_year_past) {
             $finances_past_current_year_percent = $finances_year / $finances_year_past * 100 - 100;
         } else {
-            $finances_past_current_year_percent = $finances_year_past / $finances_year * 100 - 100;
+            $finances_past_current_year_percent = $finances_year / $finances_year_past * 100 - 100;
         }
 
         return view('finances.index', compact('finances', 'current_month', 'current_year', 'past_year', 'finances_month', 'finances_year', 'finances_year_past', 'finances_past_current_year_percent', 'finances_month_past', 'finances_past_current_month_percent'));
