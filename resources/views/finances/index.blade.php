@@ -40,7 +40,7 @@
                                 @if($finances_month > $finances_month_past)
                                     <span class="text-green-500">+{{ number_format($finances_past_current_month_percent, 0, ',', ' ') }}%</span>
                                 @else
-                                    <span class="text-red-500">-{{ number_format($finances_past_current_month_percent, 0, ',', ' ') }}%</span>
+                                    <span class="text-red-500">{{ number_format($finances_past_current_month_percent, 0, ',', ' ') }}%</span>
                                 @endif
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                                 @if($finances_year > $finances_year_past)
                                     <span class="text-green-500">+{{ number_format($finances_past_current_year_percent, 0, ',', ' ') }}%</span>
                                 @else
-                                    <span class="text-red-500">-{{ number_format($finances_past_current_year_percent, 0, ',', ' ') }}%</span>
+                                    <span class="text-red-500">{{ number_format($finances_past_current_year_percent, 0, ',', ' ') }}%</span>
                                 @endif
                                 
                                 <!--<span class="block text-sm font-normal text-gray-400">{{ number_format($finances_year_past, 0, ',', ' ') }} ₽</span>-->
