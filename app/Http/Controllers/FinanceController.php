@@ -72,7 +72,12 @@ class FinanceController extends Controller
         
         
         // PERCENT FOR PAST-CURRENT MONTH
-        $finances_past_current_month_percent = ($finances_month / $finances_month_past - 1) * 100;
+        if($finances_month > $finances_month_past) {
+            $finances_past_current_month_percent = ($finances_month / $finances_month_past - 1) * 100;
+        } else {
+            $finances_past_current_month_percent = ($finances_month_past / $finances_month - 1) * 100;
+        }
+
         // PERCENT FOR PAST-CURRENT YEAR
         if($finances_year > $finances_year_past) {
             $finances_past_current_year_percent = ($finances_year / $finances_year_past - 1) * 100;
