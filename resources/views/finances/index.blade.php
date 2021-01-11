@@ -72,6 +72,14 @@
                             </div>
                             <div class="text-xl font-bold">
                                 {{ number_format($finances_year, 0, ',', ' ') }} ₽
+
+                                @if($finances_year > $finances_year_past)
+                                    <span class="text-green-500">+{{ number_format($finances_past_current_year_percent, 0, ',', ' ') }}%</span>
+                                @elseif($finances_year < $finances_year_past)
+                                    <span class="text-red-500">{{ number_format($finances_past_current_year_percent, 0, ',', ' ') }}%</span>
+                                @else
+                                    <span class="text-yellow-500">{{ number_format($finances_past_current_year_percent, 0, ',', ' ') }}%</span>
+                                @endif
                             </div>
                         </div>
                     </div>
