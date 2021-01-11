@@ -45,7 +45,7 @@ class FinanceController extends Controller
         // CURRENT MONTH
         $current_month = Carbon::now()->format('m');
         // PAST MONTH (-1)
-        $past_month = Carbon::now()->subMonth(1)->format('m');
+        $past_month = Carbon::now()->subMonth(12)->format('m');
         // CURRENT YEAR
         $current_year = Carbon::now()->format('Y');
         // PAST YEAR (-1)
