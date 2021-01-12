@@ -12,6 +12,10 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserController;
 
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+
 Route::resource('/projects', ProjectController::class)->middleware(['auth']);
 Route::resource('/projects_conf', ProjectConfigurationController::class)->middleware(['auth']);
 
