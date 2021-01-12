@@ -12,7 +12,7 @@
 
 <div class="flex flex-wrap">
         <div class="w-1/2 md:w-1/3 lg:w-56 fixed md:top-0 md:left-0 h-screen lg:block bg-gray-100 border-r z-30 hidden">
-            <div class="w-full h-20 border-b flex px-6 items-center mb-8"><p class="font-semibold text-2xl text-blue-400">Mishiko CRM</p></div>
+            <div class="w-full h-20 border-b flex px-6 items-center mb-8"><p class="font-semibold text-2xl text-blue-400">mCRM</p></div>
             <nav class="mb-4 px-6">
                 <a href="/projects" class="w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
                     <img src="/img/stack.svg" class="w-6 opacity-60 mr-2" />
@@ -29,7 +29,7 @@
                     <span class="flex-1 font-semibold text-gray-600">Финансы</span>
                 </a>
 
-                <a href="#" class="opacity-50 w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
+                <a href="/documents" class="w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
                     <img src="/img/file-text.svg" class="w-6 opacity-60 mr-2" />
                     <span class="flex-1 font-semibold text-gray-600">Документы</span>
                 </a>

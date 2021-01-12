@@ -21,6 +21,8 @@ Route::resource('/projects_conf', ProjectConfigurationController::class)->middle
 
 Route::resource('/finances', FinanceController::class)->middleware(['auth']);
 
+Route::resource('/documents', DocumentController::class)->middleware(['auth']);
+
 Route::resource('/clients', ClientController::class)->middleware(['auth']);
 
 Route::resource('/users', UserController::class)->middleware(['auth']);

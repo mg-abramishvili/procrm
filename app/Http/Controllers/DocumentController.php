@@ -9,19 +9,22 @@ use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return Document::with('projects')->whereHas('projects', function ($query) {
+        $documents = Document::with('projects')->whereHas('projects', function ($query) {
             $query->where('projects.user_id', \Auth::user()->id);
         })->orderBy('date', 'desc')->paginate(200);
+
+        return view('documents.index', compact('documents'));
     }
 
-    public function add(Request $request)
+    public function create()
+    {
+        $projects = Project::where('user_id', \Auth::user()->id)->latest()->get();
+        return view('documents.create', compact('projects'));
+    }
+
+    public function store(Request $request)
     {
         $fileName = time().'.'.$request->file->getClientOriginalExtension();
         $request->file->move(public_path() . '/uploads', $fileName);
@@ -33,7 +36,7 @@ class DocumentController extends Controller
 
         $document->save();
         $document->projects()->attach($request->projects, ['document_id' => $document->id]);
-        return response()->json('The document successfully added');
+        return redirect('/documents');
     }
 
     public function edit($id)
@@ -50,7 +53,7 @@ class DocumentController extends Controller
         return response()->json('The document successfully updated');
     }
 
-    public function view($id)
+    public function show($id)
     {
         $document = Document::find($id);
         return response()->json($document);
