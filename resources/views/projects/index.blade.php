@@ -49,7 +49,8 @@
         <table class="min-w-full divide-y divide-gray-200">
           <thead>
             <tr>
-              <th scope="col" class="px-8 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th scope="col" class="px-8 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+              <th scope="col" class="px-4 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Название проекта
               </th>
               <th scope="col" class="px-8 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -62,20 +63,33 @@
               </th>
               @endif
               @endisset
-              <th scope="col" class="px-8 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Статус
-              </th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
           @foreach($projects as $project)
             <tr>
-              <td class="px-8 py-4 whitespace-nowrap">
+            <td class="w-2 pl-8 py-4 whitespace-nowrap">
+            @if($project->status == 'active')
+                <span class="w-4 h-4 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-200 text-yellow-700">
+                </span>
+                @elseif($project->status == 'archive')
+                <span class="w-4 h-4 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-200 text-green-800">
+                </span>
+                @else
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                  {{ $project->status }}
+                </span>
+                @endif
+            </td>
+              <td class="px-4 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                   <div>
                     <div class="text-sm font-medium text-gray-900">
-                      <a href="/projects/{{ $project->id }}">
-                      {{ $project->title }}
+                      <a href="/projects/{{ $project->id }}" class="flex items-center">
+
+
+{{ $project->title }}
+                      
                       </a>
                     </div>
                   </div>
@@ -101,21 +115,6 @@
               </td>
               @endif
               @endisset
-              <td class="px-8 py-4 whitespace-nowrap">
-                @if($project->status == 'active')
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-700">
-                  в работе
-                </span>
-                @elseif($project->status == 'archive')
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  завершен
-                </span>
-                @else
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                  {{ $project->status }}
-                </span>
-                @endif
-              </td>
             </tr>
             @endforeach
           </tbody>
