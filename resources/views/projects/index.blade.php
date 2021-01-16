@@ -122,9 +122,13 @@
                 <div class="flex items-center justify-end">
                   <div>
                     <div class="text-sm font-medium text-gray-900">
-                      @isset($project->documents)
-                        есть доки
-                      @endisset
+                      
+                        @foreach($project->documents as $document)
+                          @isset($document)
+                           есть
+                          @endisset
+                        @endforeach
+                      
                     </div>
                   </div>
                 </div>
