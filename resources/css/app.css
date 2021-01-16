@@ -1,3 +1,29 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.bg-custom-light {
+    background-color: #f8fbff;
+}
+
+.text-custom-blue {
+    color: #1479ff;
+}
+
+.text-custom-darkblue {
+    color: #113462;
+}
+
+.text-custom-menu {
+    color: #5d7594;
+}
+
+.text-custom-pale {
+    color: #8a98a9;
+}

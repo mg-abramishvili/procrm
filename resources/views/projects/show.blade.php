@@ -5,7 +5,7 @@
       <div class="flex flex-wrap items-center mb-6">
         <div class="flex w-1/2">
           <div class="block">
-            <h1 class="text-3xl font-semibold mb-4">{{ $project->title }}</h1>
+            <h1 class="text-3xl font-bold mb-4 text-custom-darkblue">{{ $project->title }}</h1>
           </div>
         </div>
         <div class="flex w-1/2 justify-end">
@@ -14,63 +14,79 @@
         </div>
       </div>
 
-        <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
+        <div class="flex flex-col lg:flex-row w-full lg:space-x-8 space-y-2 lg:space-y-0 mb-12">
             <div class="w-full lg:w-1/3">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Дата создания проекта</label>
-                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" value="{{ \Carbon\Carbon::parse($project->created_at)->format('d/m/Y')}}" disabled>
+                <div class="bg-white rounded-md shadow-md p-5">
+                  <label class="block text-sm font-medium mb-2 text-custom-pale">Дата создания проекта</label>
+                  <div class="block w-full text-lg text-semibold">{{ \Carbon\Carbon::parse($project->created_at)->format('d/m/Y')}}</div>
+                </div>
             </div>
             <div class="w-full lg:w-1/3">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Заказчик</label>
+              <div class="bg-white rounded-md shadow-md p-5">
+                <label class="block text-sm font-medium text-custom-pale mb-2">Заказчик</label>
                 @foreach($project->clients as $client)
-                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" value="{{ $client->name }}" disabled>
+                <div class="block w-full text-lg text-semibold">{{ $client->name }}</div>
                 @endforeach
+              </div>
             </div>
             <div class="w-full lg:w-1/3">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Статус</label>
+              <div class="bg-white rounded-md shadow-md p-5">
+                <label class="block text-sm font-medium text-custom-pale mb-2">Статус</label>
                 @if($project->status == 'active')
-                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" value="в работе" disabled>
+                <div class="block w-full text-lg text-semibold">в работе</div>
                 @elseif($project->status == 'archive')
-                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" value="завершен" disabled>
+                <div class="block w-full text-lg text-semibold">завершен</div>
                 @else
-                <input type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" value="{{ $project->status }}" disabled>
+                <div class="block w-full text-lg text-semibold">{{ $project->status }}</div>
                 @endif
+              </div>
             </div>
             </div>
-            <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
+            <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-12">
             <div class="w-full">
-                <label class="block text-sm font-medium text-gray-700 mb-2">О проекте</label>
-                <textarea class="block w-full text-md rounded-md py-2 px-2 border border-gray-200" disabled>{{ $project->comment }}</textarea>
+              <div class="bg-white rounded-md shadow-md p-5">
+                <label class="block text-sm font-medium text-custom-pale mb-2">О проекте</label>
+                <div class="block w-full text-md text-semibold">{{ $project->comment }}</div>
+              </div>
             </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
+        <h3 class="text-xl font-bold mb-4 text-custom-darkblue">Финансы</h3>
+
+        <div class="flex flex-col lg:flex-row w-full lg:space-x-8 space-y-2 lg:space-y-0 mb-12">
             <div class="w-full lg:w-1/3">
-              <h2 class="text-xl font-semibold mb-4">Бюджет</h2>
-                <span class="block w-full text-5xl font-semibold text-blue-600">{{ number_format($project->budget, 0, ',', ' ') }} ₽</span>
+              <div class="bg-white rounded-md shadow-md p-5">
+                <h2 class="block text-sm font-medium text-custom-pale mb-2">Бюджет</h2>
+                <span class="block w-full text-5xl font-medium text-custom-blue">{{ number_format($project->budget, 0, ',', ' ') }} ₽</span>
+              </div>
             </div>
             <div class="w-full lg:w-1/3">
-              <h2 class="text-xl font-semibold mb-4">Поступления</h2>
-                <ul>
-                @foreach($project->finances as $finance)
-                  @if($finance->fin_type == 'plus')
-                    <li class="block text-md font-bold text-green-700 mb-2">+ {{ number_format($finance->amount, 0, ',', ' ') }} ₽ <small class="block text-sm font-normal text-gray-500">{{ $finance->title }} ({{ \Carbon\Carbon::parse($finance->date)->locale('ru')->isoFormat('D MMMM YYYY')}})</small></li>
-                  @endif
-                @endforeach
-                </ul>
+              <div class="bg-white rounded-md shadow-md p-5">
+                <h2 class="block text-sm font-medium text-custom-pale mb-2">Поступления</h2>
+                  <ul>
+                  @foreach($project->finances as $finance)
+                    @if($finance->fin_type == 'plus')
+                      <li class="block text-md font-bold text-green-700 mb-2">+ {{ number_format($finance->amount, 0, ',', ' ') }} ₽ <small class="block text-sm font-normal text-gray-500">{{ $finance->title }} ({{ \Carbon\Carbon::parse($finance->date)->locale('ru')->isoFormat('D MMMM YYYY')}})</small></li>
+                    @endif
+                  @endforeach
+                  </ul>
+                </div>
             </div>
             <div class="w-full lg:w-1/3">
-              <h2 class="text-xl font-semibold mb-4">Расходы</h2>
-                <ul>
-                @foreach($project->finances as $finance)
-                  @if($finance->fin_type == 'minus')
-                    <li class="block text-md font-bold text-red-700 mb-2">- {{ number_format($finance->amount, 0, ',', ' ') }} ₽ <small class="block text-sm font-normal text-gray-500">{{ $finance->title }} ({{ \Carbon\Carbon::parse($finance->date)->locale('ru')->isoFormat('D MMMM YYYY')}})</small></li>
-                  @endif
-                @endforeach
-                </ul>
+              <div class="bg-white rounded-md shadow-md p-5">
+                <h2 class="block text-sm font-medium text-custom-pale mb-2">Расходы</h2>
+                  <ul>
+                  @foreach($project->finances as $finance)
+                    @if($finance->fin_type == 'minus')
+                      <li class="block text-md font-bold text-red-700 mb-2">- {{ number_format($finance->amount, 0, ',', ' ') }} ₽ <small class="block text-sm font-normal text-gray-500">{{ $finance->title }} ({{ \Carbon\Carbon::parse($finance->date)->locale('ru')->isoFormat('D MMMM YYYY')}})</small></li>
+                    @endif
+                  @endforeach
+                  </ul>
+                </div>
             </div>
         </div>
 
-        <h2 class="text-xl font-semibold mb-4">Документы и файлы</h2>
+        <h3 class="text-xl font-bold mb-4 text-custom-darkblue">Документы</h3>
 
         <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
             @foreach($project->documents as $document)
