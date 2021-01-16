@@ -52,7 +52,7 @@
                 <ul>
                 @foreach($project->finances as $finance)
                   @if($finance->fin_type == 'plus')
-                    <li class="block text-md font-bold text-green-700 mb-2">+ {{ number_format($finance->amount, 0, ',', ' ') }} ₽ <small class="block text-sm font-normal text-gray-500">{{ $finance->title }} ({{ $finance->date }})</small></li>
+                    <li class="block text-md font-bold text-green-700 mb-2">+ {{ number_format($finance->amount, 0, ',', ' ') }} ₽ <small class="block text-sm font-normal text-gray-500">{{ $finance->title }} ({{ \Carbon\Carbon::parse($finance->date)->locale('ru')->isoFormat('D MMMM YYYY')}})</small></li>
                   @endif
                 @endforeach
                 </ul>
@@ -62,7 +62,7 @@
                 <ul>
                 @foreach($project->finances as $finance)
                   @if($finance->fin_type == 'minus')
-                    <li class="block text-md font-bold text-red-700 mb-2">- {{ number_format($finance->amount, 0, ',', ' ') }} ₽ <small class="block text-sm font-normal text-gray-500">{{ $finance->title }} ({{ $finance->date }})</small></li>
+                    <li class="block text-md font-bold text-red-700 mb-2">- {{ number_format($finance->amount, 0, ',', ' ') }} ₽ <small class="block text-sm font-normal text-gray-500">{{ $finance->title }} ({{ \Carbon\Carbon::parse($finance->date)->locale('ru')->isoFormat('D MMMM YYYY')}})</small></li>
                   @endif
                 @endforeach
                 </ul>
