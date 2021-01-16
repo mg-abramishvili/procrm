@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
     <div class="px-8 mt-5">
-    <form action="/projects/{{$project->id}}" method="post" enctype="multipart/form-data">@csrf
+    <form action="/project/{{$project->id}}" method="post" enctype="multipart/form-data">@csrf
                 @method('PUT')
                 <input type="hidden" name="id" value="{{$project->id}}">
 <div class="flex flex-wrap items-center mb-6">

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="px-8 mt-5">
+    <div class="px-8 mt-5" x-data="{ open: false }">
         
       <div class="flex flex-wrap items-center mb-6">
         <div class="flex w-1/2">
@@ -9,7 +9,8 @@
           </div>
         </div>
         <div class="flex w-1/2 justify-end">
-          <a href="/projects/{{ $project->id }}/edit" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">Изменить</a>
+          <a href="/project/{{ $project->id }}/edit" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">Изменить</a>
+          <a href="#" @click="open = true" class="bg-red-500 hover:bg-red-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow ml-2">Удалить</a>
         </div>
       </div>
 
@@ -83,5 +84,47 @@
             @endforeach
         </div>
 
+        
+
+<!-- Dialog (full screen) -->
+<div class="absolute top-0 left-0 flex items-center justify-center w-full" x-show="open" >
+
+  <!-- A basic modal dialog with title, body and one button to close -->
+  <div class="h-auto w-1/2 p-8 mt-8 text-left bg-white rounded shadow-xl border-2 border-gray-200" @click.away="open = false">
+    <div class="mt-3 text-center">
+
+      <div class="mt-2">
+        <p class="text-base leading-5 text-gray-500 mb-3">
+          Вы уверены, что хотите удалить проект <strong>{{ $project->title }}</strong>?
+        </p>
+        <p class="text-base leading-5 text-gray-500">
+          Вместе с проектом будут удалены его документы, финансы и задачи.
+        </p>
     </div>
+  </div>
+
+    <!-- One big close button.  --->
+    <div class="mt-5 flex items-center justify-center">
+        <a href="/project/{{ $project->id }}/delete" class="inline-flex justify-center mx-2 w-1/3 bg-red-500 hover:bg-red-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">
+          Удалить проект
+        </a>
+        <button @click="open = false" class="inline-flex justify-center mx-2 w-1/3 bg-white focus:outline-none rounded-lg px-6 py-2 text-sm font-semibold shadow">
+          Отменить
+        </button>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
     @endsection

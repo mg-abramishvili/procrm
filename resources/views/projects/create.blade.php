@@ -9,7 +9,7 @@
           </div>
         </div>
       </div>
-      <form action="/projects" method="post" enctype="multipart/form-data">@csrf
+      <form action="/project/created" method="post" enctype="multipart/form-data">@csrf
               <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
             <div class="w-full lg:w-1/3">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Название</label>

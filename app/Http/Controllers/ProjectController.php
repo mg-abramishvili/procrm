@@ -89,8 +89,9 @@ class ProjectController extends Controller
     public function delete($id)
     {
         $project = Project::find($id);
+        $project->finances()->delete();
+        $project->documents()->delete();
         $project->delete();
-
-        return response()->json('The project successfully deleted');
+        return redirect('/projects');
     }
 }

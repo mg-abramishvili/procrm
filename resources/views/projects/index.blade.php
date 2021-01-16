@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="flex w-1/2 justify-end">
-          <a href="/projects/create" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">Добавить проект</a>
+          <a href="/project/create" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">Добавить проект</a>
         </div>
       </div>
 
@@ -88,7 +88,7 @@
                 <div class="flex items-center">
                   <div>
                     <div class="text-sm font-medium text-gray-900">
-                      <a href="/projects/{{ $project->id }}" class="flex items-center">
+                      <a href="/project/{{ $project->id }}" class="flex items-center">
 
 
 {{ $project->title }}
