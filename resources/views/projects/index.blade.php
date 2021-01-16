@@ -121,12 +121,13 @@
               <td class="px-8 py-4 whitespace-nowrap text-right">
                 <div class="flex items-center justify-end">
                   <div>
-                    <div class="text-sm font-medium text-gray-900">
+                    <div class="flex items-center text-sm font-medium text-gray-900">
                       
                         @foreach($project->documents as $document)
                           @isset($document)
                             @if($document->title == 'contract')
-                              <img src="/img/square-check.svg" class="inline-flex w-4 h-4"/> Д
+                              <img src="/img/square-check.svg" class="inline-flex w-5 h-5"/>
+                              <span class="inline-flex ml-2 leading-none">Д</span>
                             @endif
                           @endisset
                         @endforeach
