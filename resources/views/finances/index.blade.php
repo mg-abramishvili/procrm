@@ -117,16 +117,6 @@
                             <span class="px-4 py-2 inline-flex text-sm leading-3 font-bold rounded-full bg-red-100 text-gray-700">- {{ number_format($financeItem->amount, 0, ',', ' ') }} ₽</span>
                             @endif
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium w-1/4">
-                            <div class="inline-flex action-buttons">
-                                <a href="/finances/{{ $financeItem->id }}/edit" class="flex-1 w-5 text-indigo-600 hover:text-indigo-900">
-                                <img src="/img/edit.svg" class="opacity-30"/>
-                                </a>
-                                <button class="flex-1 w-5 ml-1 text-indigo-600 hover:text-indigo-900" @click="deleteFinance(finance.id)">
-                                <img src="/img/trash.svg" class="opacity-30"/>
-                                </button>
-                            </div>
-                        </td>
                         </tr>
                         @endforeach
                         
