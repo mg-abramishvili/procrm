@@ -13,7 +13,7 @@ class DocumentController extends Controller
     {
         $documents = Document::with('projects')->whereHas('projects', function ($query) {
             $query->where('projects.user_id', \Auth::user()->id);
-        })->orderBy('date', 'desc')->paginate(200);
+        })->orderBy('created_at', 'desc')->paginate(200);
 
         return view('documents.index', compact('documents'));
     }
