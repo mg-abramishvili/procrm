@@ -123,11 +123,7 @@
                   <div>
                     <div class="text-sm font-medium text-gray-900">
                       @isset($project->documents)
-                        @foreach($project->documents as $document)
-                            @if($document->name == 'contract')
-                              есть договор
-                            @endif
-                        @endforeach
+                        есть доки
                       @endisset
                     </div>
                   </div>
