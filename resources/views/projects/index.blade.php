@@ -63,6 +63,9 @@
               </th>
               @endif
               @endisset
+              <th scope="col" class="px-8 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 text-right uppercase tracking-wider">
+                Сверка
+              </th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
@@ -115,6 +118,21 @@
               </td>
               @endif
               @endisset
+              <td class="px-8 py-4 whitespace-nowrap text-right">
+                <div class="flex items-center justify-end">
+                  <div>
+                    <div class="text-sm font-medium text-gray-900">
+                      @isset($project->documents)
+                        @foreach($project->documents as $document)
+                            @if($document->name == 'contract')
+                              есть договор
+                            @endif
+                        @endforeach
+                      @endisset
+                    </div>
+                  </div>
+                </div>
+              </td>
             </tr>
             @endforeach
           </tbody>
