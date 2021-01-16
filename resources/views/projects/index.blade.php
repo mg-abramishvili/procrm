@@ -126,7 +126,7 @@
                         @foreach($project->documents as $document)
                           @isset($document)
                             @if($document->title == 'contract')
-                              <img src="/img/square-check.svg" class="inline-flex w-2 h-2"/> Д
+                              <img src="/img/square-check.svg" class="inline-flex w-4 h-4"/> Д
                             @endif
                           @endisset
                         @endforeach
