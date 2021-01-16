@@ -125,7 +125,7 @@
                       
                         @foreach($project->documents as $document)
                           @isset($document)
-                            @if($document->name == 'contract')
+                            @if($document->title == 'contract')
                               есть договор
                             @endif
                           @endisset
