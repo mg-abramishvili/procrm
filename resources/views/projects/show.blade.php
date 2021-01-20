@@ -5,7 +5,7 @@
       <div class="flex flex-wrap items-center mb-6">
         <div class="flex w-1/2">
           <div class="block">
-            <h1 class="text-3xl font-bold mb-4 text-custom-darkblue">{{ $project->title }}</h1>
+            <h1 class="text-3xl font-bold mb-4 abr-text-darkblue">{{ $project->title }}</h1>
           </div>
         </div>
         <div class="flex w-1/2 justify-end">
@@ -14,24 +14,24 @@
         </div>
       </div>
 
-        <div class="flex flex-col lg:flex-row w-full lg:space-x-8 space-y-2 lg:space-y-0 mb-12">
+        <div class="flex flex-col lg:flex-row w-full lg:space-x-4 space-y-2 lg:space-y-0 mb-8">
             <div class="w-full lg:w-1/3">
-                <div class="bg-white rounded-md shadow-md p-5">
-                  <label class="block text-sm font-medium mb-2 text-custom-pale">Дата создания проекта</label>
+                <div class="bg-white rounded-md abr-box-shadow p-5">
+                  <label class="block text-sm font-medium mb-2 abr-text-pale">Дата создания проекта</label>
                   <div class="block w-full text-lg text-semibold">{{ \Carbon\Carbon::parse($project->created_at)->format('d/m/Y')}}</div>
                 </div>
             </div>
             <div class="w-full lg:w-1/3">
-              <div class="bg-white rounded-md shadow-md p-5">
-                <label class="block text-sm font-medium text-custom-pale mb-2">Заказчик</label>
+              <div class="bg-white rounded-md abr-box-shadow p-5">
+                <label class="block text-sm font-medium abr-text-pale mb-2">Заказчик</label>
                 @foreach($project->clients as $client)
                 <div class="block w-full text-lg text-semibold">{{ $client->name }}</div>
                 @endforeach
               </div>
             </div>
             <div class="w-full lg:w-1/3">
-              <div class="bg-white rounded-md shadow-md p-5">
-                <label class="block text-sm font-medium text-custom-pale mb-2">Статус</label>
+              <div class="bg-white rounded-md abr-box-shadow p-5">
+                <label class="block text-sm font-medium abr-text-pale mb-2">Статус</label>
                 @if($project->status == 'active')
                 <div class="block w-full text-lg text-semibold">в работе</div>
                 @elseif($project->status == 'archive')
@@ -42,27 +42,27 @@
               </div>
             </div>
             </div>
-            <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-12">
+            <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-8">
             <div class="w-full">
-              <div class="bg-white rounded-md shadow-md p-5">
-                <label class="block text-sm font-medium text-custom-pale mb-2">О проекте</label>
+              <div class="bg-white rounded-md abr-box-shadow p-5">
+                <label class="block text-sm font-medium abr-text-pale mb-2">О проекте</label>
                 <div class="block w-full text-md text-semibold">{{ $project->comment }}</div>
               </div>
             </div>
         </div>
 
-        <h3 class="text-xl font-bold mb-4 text-custom-darkblue">Финансы</h3>
+        <h3 class="text-xl font-bold mb-4 abr-text-darkblue">Финансы</h3>
 
-        <div class="flex flex-col lg:flex-row w-full lg:space-x-8 space-y-2 lg:space-y-0 mb-12">
+        <div class="flex flex-col lg:flex-row w-full lg:space-x-4 space-y-2 lg:space-y-0 mb-8">
             <div class="w-full lg:w-1/3">
-              <div class="bg-white rounded-md shadow-md p-5">
-                <h2 class="block text-sm font-medium text-custom-pale mb-2">Бюджет</h2>
-                <span class="block w-full text-5xl font-medium text-custom-blue">{{ number_format($project->budget, 0, ',', ' ') }} ₽</span>
+              <div class="bg-white rounded-md abr-box-shadow p-5">
+                <h2 class="block text-sm font-medium abr-text-pale mb-2">Бюджет</h2>
+                <span class="block w-full text-5xl font-medium abr-text-blue">{{ number_format($project->budget, 0, ',', ' ') }} ₽</span>
               </div>
             </div>
             <div class="w-full lg:w-1/3">
-              <div class="bg-white rounded-md shadow-md p-5">
-                <h2 class="block text-sm font-medium text-custom-pale mb-2">Поступления</h2>
+              <div class="bg-white rounded-md abr-box-shadow p-5">
+                <h2 class="block text-sm font-medium abr-text-pale mb-2">Поступления</h2>
                   <ul>
                   @foreach($project->finances as $finance)
                     @if($finance->fin_type == 'plus')
@@ -73,8 +73,8 @@
                 </div>
             </div>
             <div class="w-full lg:w-1/3">
-              <div class="bg-white rounded-md shadow-md p-5">
-                <h2 class="block text-sm font-medium text-custom-pale mb-2">Расходы</h2>
+              <div class="bg-white rounded-md abr-box-shadow p-5">
+                <h2 class="block text-sm font-medium abr-text-pale mb-2">Расходы</h2>
                   <ul>
                   @foreach($project->finances as $finance)
                     @if($finance->fin_type == 'minus')
@@ -86,7 +86,7 @@
             </div>
         </div>
 
-        <h3 class="text-xl font-bold mb-4 text-custom-darkblue">Документы</h3>
+        <h3 class="text-xl font-bold mb-4 abr-text-darkblue">Документы</h3>
 
         <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
             @foreach($project->documents as $document)

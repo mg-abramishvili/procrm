@@ -8,22 +8,26 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.bg-custom-light {
-    background-color: #f8fbff;
+.abr-bg {
+    background-color: #edf2f9;
 }
 
-.text-custom-blue {
+.abr-text-blue {
     color: #1479ff;
 }
 
-.text-custom-darkblue {
+.abr-text-darkblue {
     color: #113462;
 }
 
-.text-custom-menu {
+.abr-text-menu {
     color: #5d7594;
 }
 
-.text-custom-pale {
+.abr-text-pale {
     color: #8a98a9;
+}
+
+.abr-box-shadow {
+    box-shadow: 0 7px 14px 0 rgba(65,69,88,0.1),0 3px 6px 0 rgba(0,0,0,0.07);
 }
