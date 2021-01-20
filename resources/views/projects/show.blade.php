@@ -14,7 +14,7 @@
         </div>
       </div>
 
-        <div class="flex flex-col lg:flex-row w-full lg:space-x-4 space-y-2 lg:space-y-0 mb-8">
+        <div class="flex flex-col lg:flex-row w-full lg:space-x-6 space-y-2 lg:space-y-0 mb-8">
             <div class="w-full lg:w-1/3">
                 <div class="bg-white rounded-md abr-box-shadow p-5">
                   <label class="block text-sm font-medium mb-2 abr-text-pale">Дата создания проекта</label>
@@ -53,7 +53,7 @@
 
         <h3 class="text-xl font-bold mb-4 abr-text-darkblue">Финансы</h3>
 
-        <div class="flex flex-col lg:flex-row w-full lg:space-x-4 space-y-2 lg:space-y-0 mb-8">
+        <div class="flex flex-col lg:flex-row w-full lg:space-x-6 space-y-2 lg:space-y-0 mb-8">
             <div class="w-full lg:w-1/3">
               <div class="bg-white rounded-md abr-box-shadow p-5">
                 <h2 class="block text-sm font-medium abr-text-pale mb-2">Бюджет</h2>
