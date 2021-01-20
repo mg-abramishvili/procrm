@@ -82,7 +82,10 @@ class ProjectController extends Controller
 
     public function show($id)
     {
-        $project = Project::with('finances', 'documents')->find($id);
+        $project = Project::with(['finances' => function ($q) {
+            $q->orderBy('date', 'desc');
+          }])->find($id);
+
         return view('projects.show', compact('project'));
     }
 
