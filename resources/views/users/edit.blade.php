@@ -22,7 +22,7 @@
                 <input name="email" type="text" class="block w-full text-md rounded-md py-2 px-2 border border-gray-300" value="{{ $user->email }}">
                 @if ($errors->has('email'))
                     <div>
-                        Укажите название
+                        Укажите e-mail
                     </div>
                 @endif
             </div>
