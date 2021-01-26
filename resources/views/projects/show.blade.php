@@ -1,6 +1,10 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="px-8 mt-5" x-data="{ open: false }">
+<style>
+[x-cloak] { display: none }
+</style>
+
+    <div class="px-8 mt-5" x-cloak x-data="{ open: false }">
         
       <div class="flex flex-wrap items-center mb-6">
         <div class="flex w-1/2">
