@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\ProjectConfiguration;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use Auth; 
 
 class UserController extends Controller
 {
@@ -19,16 +22,18 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users,email,'.Auth::user()->id.',id',
             'fio' => 'required',
         ]);
 
         $data = request()->all();
         $user = User::find($data['id']);
-        $user->name = $data['name'];
         $user->email = $data['email'];
+        $user->name = $data['email'];
         $user->fio = $data['fio'];
+
+        $user->password = Hash::make($data['password']);
+
         $user->save();
         return redirect()->back();
     }
