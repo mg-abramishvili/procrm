@@ -72,7 +72,7 @@ class FinanceController extends Controller
         // NEXT PAYMENTS
         $project_finance_est = Project::where('budget', '!=', '0')->where('projects.user_id', \Auth::user()->id)->sum('budget') - Finance::with('projects')->whereHas('projects', function ($query) { $query->where('budget', '!=', '0'); $query->where('projects.user_id', \Auth::user()->id); })->sum('amount');
 
-        return view('finances.index', compact('finances', 'current_month', 'current_year', 'past_year', 'finances_month', 'finances_year', 'finances_year_past', 'finances_past_current_year_percent', 'finances_month_past', 'finances_past_current_month_percent', 'project_finance_est'));
+        return view('finances.index', compact('finances', 'current_month', 'current_year', 'past_year', 'finances_month', 'finances_year', 'finances_year_past', 'finances_month_past', 'project_finance_est'));
         //dd($project_finance_est);
     }
 
