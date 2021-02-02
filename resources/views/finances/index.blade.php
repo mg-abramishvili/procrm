@@ -64,20 +64,12 @@
                             </div>
                             <div class="text-xl font-bold">
                                 {{ number_format($finances_year, 0, ',', ' ') }} ₽
-
-                                @if($finances_year > $finances_year_past)
-                                    <span class="text-green-500">+{{ number_format($finances_past_current_year_percent, 0, ',', ' ') }}%</span>
-                                @elseif($finances_year < $finances_year_past)
-                                    <span class="text-red-500">{{ number_format($finances_past_current_year_percent, 0, ',', ' ') }}%</span>
-                                @else
-                                    <span class="text-yellow-500">{{ number_format($finances_past_current_year_percent, 0, ',', ' ') }}%</span>
-                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="w-full lg:w-1/4">
+            <div class="w-full lg:w-1/3">
                 <div class="widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890">
                     <div class="flex flex-row items-center justify-between">
                         <div class="flex flex-col">
