@@ -68,23 +68,6 @@ class FinanceController extends Controller
         
         // SUMS OF PAST YEAR (-1)
         $finances_year_past = $finances_collection_y_past->whereYear('date', $past_year)->where('fin_type', 'plus')->get()->sum('amount');
-        
-        
-        
-        // PERCENT FOR PAST-CURRENT MONTH
-        if (!$finances_month_past) {
-            $finances_past_current_month_percent = $finances_month / 1 * 100 - 100;
-        } else {
-            $finances_past_current_month_percent = $finances_month / $finances_month_past * 100 - 100;
-        }
-        
-
-        // PERCENT FOR PAST-CURRENT YEAR
-        if (!$finances_month_past) {
-            $finances_past_current_year_percent = $finances_year / 1 * 100 - 100;
-        } else {
-            $finances_past_current_year_percent = $finances_year / $finances_year_past * 100 - 100;
-        }
 
         // NEXT PAYMENTS
         $project_finance_est = Project::where('budget', '!=', '0')->where('projects.user_id', \Auth::user()->id)->sum('budget') - Finance::with('projects')->whereHas('projects', function ($query) { $query->where('budget', '!=', '0'); $query->where('projects.user_id', \Auth::user()->id); })->sum('amount');
