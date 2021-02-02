@@ -62,6 +62,9 @@
               <div class="bg-white rounded-md abr-box-shadow p-5">
                 <h2 class="block text-sm font-medium abr-text-pale mb-2">Бюджет</h2>
                 <span class="block w-full text-5xl font-medium abr-text-blue">{{ number_format($project->budget, 0, ',', ' ') }} ₽</span>
+                
+                <!--<span>{{ $project_finance_est }}</span>-->
+
               </div>
             </div>
             <div class="w-full lg:w-1/3">

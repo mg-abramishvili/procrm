@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full lg:w-1/4">
+            <!--<div class="w-full lg:w-1/4">
                 <div class="widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890">
                     <div class="flex flex-row items-center justify-between">
                         <div class="flex flex-col">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="w-full lg:w-1/4">
                 <div class="widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890">
                     <div class="flex flex-row items-center justify-between">
@@ -80,6 +80,20 @@
                                 @else
                                     <span class="text-yellow-500">{{ number_format($finances_past_current_year_percent, 0, ',', ' ') }}%</span>
                                 @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/4">
+                <div class="widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890">
+                    <div class="flex flex-row items-center justify-between">
+                        <div class="flex flex-col">
+                            <div class="text-xs uppercase font-light text-grey-500">
+                                Ожидается
+                            </div>
+                            <div class="text-xl font-bold">
+                                {{ number_format($project_finance_est, 0, ',', ' ') }} ₽
                             </div>
                         </div>
                     </div>

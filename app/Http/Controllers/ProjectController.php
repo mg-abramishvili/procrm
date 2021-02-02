@@ -86,7 +86,9 @@ class ProjectController extends Controller
             $q->orderBy('date', 'desc');
           }])->find($id);
 
-        return view('projects.show', compact('project'));
+        $project_finance_est = $project->budget - $project->finances()->sum('amount');
+
+        return view('projects.show', compact('project', 'project_finance_est'));
     }
 
     public function delete($id)
