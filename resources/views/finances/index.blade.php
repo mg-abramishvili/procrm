@@ -13,7 +13,7 @@
         </div>
 
         <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-12 px-8">
-            <div class="w-full lg:w-1/4">
+            <!--<div class="w-full lg:w-1/4">
                 <div class="widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890">
                     <div class="flex flex-row items-center justify-between">
                         <div class="flex flex-col">
@@ -26,8 +26,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="w-full lg:w-1/4">
+            </div>-->
+            <div class="w-full lg:w-1/3">
                 <div class="widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890">
                     <div class="flex flex-row items-center justify-between">
                         <div class="flex flex-col">
@@ -36,14 +36,6 @@
                             </div>
                             <div class="text-xl font-bold">
                                 {{ number_format($finances_month, 0, ',', ' ') }} ₽
-
-                                @if($finances_month > $finances_month_past)
-                                    <span class="text-green-500">+{{ number_format($finances_past_current_month_percent, 0, ',', ' ') }}%</span>
-                                @elseif($finances_month < $finances_month_past)
-                                    <span class="text-red-500">{{ number_format($finances_past_current_month_percent, 0, ',', ' ') }}%</span>
-                                @else
-                                    <span class="text-yellow-500">{{ number_format($finances_past_current_month_percent, 0, ',', ' ') }}%</span>
-                                @endif
                             </div>
                         </div>
                     </div>
@@ -63,7 +55,7 @@
                     </div>
                 </div>
             </div>-->
-            <div class="w-full lg:w-1/4">
+            <div class="w-full lg:w-1/3">
                 <div class="widget w-full p-4 bg-white border border-grey-100 dark:bg-grey-895 dark:border-grey-890">
                     <div class="flex flex-row items-center justify-between">
                         <div class="flex flex-col">
