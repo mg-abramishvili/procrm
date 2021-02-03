@@ -12,6 +12,7 @@
         </div>
 
         <div class="flex w-1/3 justify-end">
+            <a href="#" @click="open = true" class="bg-white focus:outline-none rounded-lg px-6 py-2 text-sm font-semibold shadow mr-2">*</a>
             <a href="/project/create" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">Добавить проект</a>
         </div>
     </div>

@@ -34,32 +34,10 @@
         <button type="submit" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">Сохранить</button>
     </form>
 
-    <hr class="mt-10 mb-10">
 
-    <h2 class="text-3xl font-semibold mb-4">Раздел Проекты</h2>
-    @isset($project_conf->index_table_budget_column)
-    <form action="/projects_conf/{{$project_conf->id}}" method="post" enctype="multipart/form-data">@csrf
-        @method('PUT')
-        <input type="hidden" name="id" value="{{$project_conf->id}}">
 
-        <select name="index_table_budget_column" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200">
-            <option value="y" @if($project_conf->index_table_budget_column == 'y') selected @endif>Вкл</option>
-            <option value="n" @if($project_conf->index_table_budget_column == 'n') selected @endif>Выкл</option>
-        </select>
 
-        <button type="submit" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">Сохранить</button>
-    </form>
-    @else
-    <form action="/projects_conf" method="post" enctype="multipart/form-data">@csrf
 
-        <select name="index_table_budget_column" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200">
-            <option value="y">Вкл</option>
-            <option value="n" selected>Выкл</option>
-        </select>
-
-        <button type="submit" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">Сохранить</button>
-    </form>
-    @endisset
 </div>
 
 @endsection
