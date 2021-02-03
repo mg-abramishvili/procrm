@@ -7,7 +7,6 @@
     <title>mCRM</title>
     
     @livewireStyles
-
     <link href="/css/app.css" type="text/css" rel="stylesheet"/>
     
 </head>
