@@ -15,7 +15,7 @@ class ProjectSearch extends Component
     public function render()
     {
         $search = '%'.$this->search . '%';
-        $projects = Project::where('user_id', \Auth::user()->id)->where('title', 'LIKE', $search)->get();
+        $projects = Project::where('user_id', \Auth::user()->id)->latest()->where('title', 'LIKE', $search)->get();
         
         $project_conf = ProjectConfiguration::where('user_id', \Auth::user()->id)->latest()->first();
         $projects_active = Project::where('user_id', \Auth::user()->id)->where('status', 'active')->latest()->paginate(200);
