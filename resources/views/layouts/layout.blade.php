@@ -93,7 +93,7 @@
                     <span class="flex-1 font-medium abr-text-menu">Заказчики</span>
                 </a>
 
-                <a href="#" class="opacity-50 w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
+                <a href="/leads" class="w-full inline-flex items-center text-blue-400 h-10 hover:bg-gray-200 rounded-lg cursor-pointer mb-2">
                     <img src="/img/pennant.svg" class="w-6 opacity-60 mr-2" />
                     <span class="flex-1 font-medium abr-text-menu">Заявки</span>
                 </a>

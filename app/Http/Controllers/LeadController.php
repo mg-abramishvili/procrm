@@ -14,18 +14,29 @@ class LeadController extends Controller
      */
     public function index()
     {
-        return Lead::where('user_id', \Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $leads = Lead::where('user_id', \Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        return view('leads.index', compact('leads'));
     }
 
-    public function add(Request $request)
+    public function create()
     {
-        $lead = new Lead([
-            'title' => $request->get('title'),
-            'text' => $request->get('text'),
-            'user_id' => \Auth::user()->id,
+        return view('leads.create');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'text' => 'required',
         ]);
+
+        $data = request()->all();
+        $lead = new Lead();
+        $lead->title = $data['title'];
+        $lead->text = $data['text'];
+        $lead->user_id = \Auth::user()->id;
         $lead->save();
-        return response()->json('The lead successfully added');
+        return redirect('/leads');
     }
 
     public function edit($id)
