@@ -101,6 +101,8 @@
                                     <div class="text-sm font-medium text-gray-900">
                                         {{ $financeItem->title }} →
                                         @foreach($financeItem->projects as $project)<span>{{ $project->title }}</span>@endforeach
+
+                                        <a href="/finances/{{ $financeItem->id }}/edit" class="opacity-40 font-normal text-xs">правка</a>
                                     </div>
                                 </div>
                             </div>

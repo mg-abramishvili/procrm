@@ -1,7 +1,14 @@
 @extends('layouts.layout')
 @section('content')
-    <div>
-        <h3 class="text-center">Добавить поступление</h3>
+    <div class="px-8 mt-5">
+        <div class="flex flex-wrap items-center mb-6">
+            <div class="flex w-1/2">
+                <div class="block">
+                    <h1 class="text-2xl font-semibold">Новая запись в финансы</h1>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-6">
             <form action="/finances" method="post" enctype="multipart/form-data">@csrf
@@ -37,7 +44,7 @@
                             </select>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Добавить</button>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">Добавить</button>
                 </form>
             </div>
         </div>
