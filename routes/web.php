@@ -29,6 +29,7 @@ Route::group(['prefix' => 'project'], function () {
 Route::resource('/projects_conf', ProjectConfigurationController::class)->middleware(['auth']);
 
 Route::resource('/finances', FinanceController::class)->middleware(['auth']);
+Route::get('/finances-calendar/{year}', 'App\Http\Controllers\FinanceController@calendar')->middleware(['auth']);
 
 Route::resource('/documents', DocumentController::class)->middleware(['auth']);
 

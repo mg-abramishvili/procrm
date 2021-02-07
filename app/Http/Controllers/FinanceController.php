@@ -10,11 +10,6 @@ use Carbon\Carbon;
 
 class FinanceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $finances = Finance::with('projects')->whereHas('projects', function ($query) {
@@ -76,6 +71,81 @@ class FinanceController extends Controller
         //dd($project_finance_est);
     }
 
+    public function calendar($year, Request $request)
+    {
+        $finances = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->orderBy('date', 'desc')->get()->groupBy(function($d) {
+            return Carbon::parse($d->date)->format('Y-m');
+        });
+
+        // JANUARY
+        $jan = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest()->whereYear('date', $year)->whereMonth('date', '01')->where('fin_type', 'plus')->get()->sum('amount');
+
+        // FEBRUARY
+        $feb = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest()->whereYear('date', $year)->whereMonth('date', '02')->where('fin_type', 'plus')->get()->sum('amount');
+
+        // MARCH
+        $mar = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest()->whereYear('date', $year)->whereMonth('date', '03')->where('fin_type', 'plus')->get()->sum('amount');
+
+        // APRIL
+        $apr = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest()->whereYear('date', $year)->whereMonth('date', '04')->where('fin_type', 'plus')->get()->sum('amount');
+
+        // MAY
+        $may = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest()->whereYear('date', $year)->whereMonth('date', '05')->where('fin_type', 'plus')->get()->sum('amount');
+
+        // JUNE
+        $jun = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest()->whereYear('date', $year)->whereMonth('date', '06')->where('fin_type', 'plus')->get()->sum('amount');
+
+        // JULY
+        $jul = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest()->whereYear('date', $year)->whereMonth('date', '07')->where('fin_type', 'plus')->get()->sum('amount');
+
+        // AUGUST
+        $aug = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest()->whereYear('date', $year)->whereMonth('date', '08')->where('fin_type', 'plus')->get()->sum('amount');
+
+        // SEPTEMBER
+        $sep = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest()->whereYear('date', $year)->whereMonth('date', '09')->where('fin_type', 'plus')->get()->sum('amount');
+
+        // OCTOBER
+        $oct = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest()->whereYear('date', $year)->whereMonth('date', '10')->where('fin_type', 'plus')->get()->sum('amount');
+
+        // NOVEBER
+        $nov = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest()->whereYear('date', $year)->whereMonth('date', '11')->where('fin_type', 'plus')->get()->sum('amount');
+
+        // DECEMBER
+        $dec = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest()->whereYear('date', $year)->whereMonth('date', '12')->where('fin_type', 'plus')->get()->sum('amount');
+
+        $year_total = Finance::with('projects')->whereHas('projects', function ($query) {
+            $query->where('projects.user_id', \Auth::user()->id);
+        })->latest()->whereYear('date', $year)->where('fin_type', 'plus')->get()->sum('amount');
+
+        return view('finances.calendar', compact('finances', 'year', 'year_total', 'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'));
+        //dd($year);
+    }
 
     public function create()
     {

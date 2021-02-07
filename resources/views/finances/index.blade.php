@@ -8,6 +8,7 @@
                 </div>
             </div>
             <div class="flex w-1/2 justify-end">
+                <a href="/finances-calendar/2021" class="bg-white focus:outline-none rounded-lg px-6 py-2 text-sm font-semibold shadow mr-2">Календарь</a>
                 <a href="/finances/create" class="bg-blue-500 hover:bg-blue-600 focus:outline-none rounded px-6 py-2 text-white text-sm font-semibold shadow">Добавить поступление</a>
             </div>
         </div>
