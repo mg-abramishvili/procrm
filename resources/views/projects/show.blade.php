@@ -46,6 +46,8 @@
               </div>
             </div>
             </div>
+
+            @isset($project->comment)
             <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-8">
             <div class="w-full">
               <div class="bg-white rounded-md abr-box-shadow p-5">
@@ -53,7 +55,8 @@
                 <div class="block w-full text-md text-semibold">{{ $project->comment }}</div>
               </div>
             </div>
-        </div>
+          </div>
+          @endisset
 
         <h3 class="text-xl font-bold mb-4 abr-text-darkblue">Финансы</h3>
 

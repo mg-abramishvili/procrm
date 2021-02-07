@@ -2,8 +2,16 @@
 
 <div class="flex flex-wrap items-center mb-6">
         <div class="flex w-1/3">
-            <div class="block">
-                <h1 class="text-2xl font-semibold">Проекты</h1>
+            <div class="flex flex-wrap items-center">
+                <h1 class="text-3xl font-bold abr-text-darkblue inline-flex">Проекты</h1>
+
+                <label class="inline-flex ml-4">
+                <select wire:model.lazy="status" class="rounded-lg w-full border-none shadow text-sm px-2 pr-6 py-2">
+                <option value="">Все</option>
+                <option value="active">В работе</option>
+                <option value="archive">Выполненные</option>
+                </select>
+                </label>
             </div>
         </div>
 
@@ -35,8 +43,11 @@
               </th>
               @endif
               @endisset
-              <th scope="col" class="px-8 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 text-right uppercase tracking-wider">
-                Сверка
+              <th scope="col" class="px-8 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 text-center uppercase tracking-wider">
+                Договор
+              </th>
+              <th scope="col" class="px-8 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 text-center uppercase tracking-wider">
+                Акт
               </th>
             </tr>
           </thead>
@@ -91,7 +102,7 @@
               @endif
               @endisset
               <td class="px-8 py-4 whitespace-nowrap text-right">
-                <div class="flex items-center justify-end">
+                <div class="flex items-center justify-center">
                   <div>
                     <div class="flex items-center text-sm font-medium text-gray-900">
                       
@@ -99,7 +110,23 @@
                           @isset($document)
                             @if($document->title == 'contract')
                               <img src="/img/square-check.svg" class="inline-flex w-5 h-5"/>
-                              <span class="inline-flex ml-2 leading-none">Д</span>
+                            @endif
+                          @endisset
+                        @endforeach
+                      
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-8 py-4 whitespace-nowrap text-right">
+                <div class="flex items-center justify-center">
+                  <div>
+                    <div class="flex items-center text-sm font-medium text-gray-900">
+                      
+                        @foreach($project->documents as $document)
+                          @isset($document)
+                            @if($document->title == 'act')
+                              <img src="/img/square-check.svg" class="inline-flex w-5 h-5"/>
                             @endif
                           @endisset
                         @endforeach
