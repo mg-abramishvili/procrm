@@ -2,6 +2,17 @@
 @section('content')
 <style>
 [x-cloak] { display: none }
+
+.toggle__dot {
+  top: -.25rem;
+  left: -.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+input[type="checkbox"]:checked ~ .toggle__dot {
+  transform: translateX(100%);
+  background-color: #48bb78;
+}
 </style>
 
     <div class="projects pt-5" x-cloak x-data="{ open: false }">
@@ -18,44 +29,34 @@
     <div class="mt-3 text-center">
 
 
-    @isset($project_conf->index_table_budget_column)
     <form action="/projects_conf/{{$project_conf->id}}" method="post" enctype="multipart/form-data">@csrf
         @method('PUT')
         <input type="hidden" name="id" value="{{$project_conf->id}}">
 
-        <label>Показывать колонку Бюджет</label>
-        <select name="index_table_budget_column" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200 mb-4">
-            <option value="y" @if($project_conf->index_table_budget_column == 'y') selected @endif>Вкл</option>
-            <option value="n" @if($project_conf->index_table_budget_column == 'n') selected @endif>Выкл</option>
-        </select>
+        <label for="index_table_budget_column" class="flex items-center cursor-pointer">
+            <div class="relative">
+                @if($project_conf->index_table_budget_column == 'y')
+                    <input id="index_table_budget_column" type="checkbox" name="index_table_budget_column" class="hidden" value="y" checked/>
+                @elseif($project_conf->index_table_budget_column == 'n')
+                    <input id="index_table_budget_column" type="checkbox" name="index_table_budget_column" class="hidden" value="y"/>
+                @endif
+                <div class="toggle__line w-10 h-4 bg-gray-200 rounded-full shadow-inner"></div>
+                <div class="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
+            </div>
+            <div class="ml-3">
+                Показывать колонку Бюджет
+            </div>
+        </label>
+
+        <div class="mt-8"></div>
 
         <button type="submit" class="inline-flex justify-center mx-2 w-1/3 bg-red-500 hover:bg-red-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">
           Сохранить
         </button>
-        <span @click="open = false" class="inline-flex justify-center mx-2 w-1/3 bg-white focus:outline-none rounded-lg px-6 py-2 text-sm font-semibold shadow">
+        <span @click="open = false" class="inline-flex justify-center mx-2 w-1/3 bg-white cursor-pointer focus:outline-none rounded-lg px-6 py-2 text-sm font-semibold shadow">
           Закрыть
         </span>
     </form>
-    @else
-    <form action="/projects_conf" method="post" enctype="multipart/form-data">@csrf
-
-        <label>Показывать колонку Бюджет</label>
-        <select name="index_table_budget_column" class="block w-full text-md rounded-md py-2 px-2 border border-gray-200 mb-4">
-            <option value="y">Вкл</option>
-            <option value="n" selected>Выкл</option>
-        </select>
-
-        <div class="mt-5 flex items-center justify-center">
-        <button type="submit" class="inline-flex justify-center mx-2 w-1/3 bg-red-500 hover:bg-red-600 focus:outline-none rounded-lg px-6 py-2 text-white text-sm font-semibold shadow">
-          Сохранить
-        </button>
-        <span @click="open = false" class="inline-flex justify-center mx-2 w-1/3 bg-white focus:outline-none rounded-lg px-6 py-2 text-sm font-semibold shadow">
-          Закрыть
-        </span>
-    </div>
-
-        </form>
-    @endisset
 
   </div>
 

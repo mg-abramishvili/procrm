@@ -21,7 +21,13 @@ class ProjectConfigurationController extends Controller
     {
         $data = request()->all();
         $project_conf = ProjectConfiguration::find($data['id']);
-        $project_conf->index_table_budget_column = $data['index_table_budget_column'];
+
+        if (!isset($data['index_table_budget_column'])) {
+            $project_conf->index_table_budget_column = 'n';
+        } else {
+            $project_conf->index_table_budget_column = $data['index_table_budget_column'];
+        }
+
         $project_conf->user_id = \Auth::user()->id;
         $project_conf->save();
         return redirect('/projects');
